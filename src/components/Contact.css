@@ -3,6 +3,10 @@
   background: var(--color-bg-secondary);
 }
 
+.contact-container {
+  padding: 0 var(--spacing-md);
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -97,6 +101,7 @@
 .meta-list a {
   color: var(--color-text-primary);
   transition: color var(--transition-fast);
+  word-break: break-all; /* Ensure emails/links don't overflow */
 }
 
 .meta-list a:hover {
@@ -116,5 +121,11 @@
 @media (max-width: 768px) {
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+  
+  .footer-bar {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
   }
 }

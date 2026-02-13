@@ -22,6 +22,7 @@
   padding: 10px;
   border: 1px solid var(--color-border);
   margin-bottom: var(--spacing-sm);
+  max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 .profile-image {
@@ -113,10 +114,26 @@
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .profile-column {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
   
   .edu-entry {
     flex-direction: column;
     gap: 0.25rem;
+  }
+  
+  .tech-category {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .about-grid {
+    padding: 0 var(--spacing-md);
   }
 }

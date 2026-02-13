@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding: 0 var(--spacing-md); /* Override container padding if needed */
+  padding: 0 var(--spacing-md);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -27,6 +27,7 @@
   color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  flex-shrink: 0;
 }
 
 .navbar-logo::before {
@@ -38,6 +39,7 @@
 .navbar-links {
   display: flex;
   height: 100%;
+  margin-left: var(--spacing-md);
 }
 
 .navbar-links a {
@@ -51,6 +53,7 @@
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .navbar-links a:hover {
@@ -61,7 +64,28 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .navbar-logo {
+    margin-bottom: var(--spacing-xs);
+  }
+
   .navbar-links {
-    display: none;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px; /* Space for scrollbar if needed */
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-xs);
+  }
+
+  .navbar-links::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for cleaner look */
   }
 }
