@@ -1,0 +1,120 @@
+.contact {
+  padding: var(--spacing-xl) 0;
+  background: var(--color-bg-secondary);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Terminal Form */
+.contact-terminal {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family-mono);
+}
+
+.terminal-header {
+  background: var(--color-border);
+  color: var(--color-text-primary);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.terminal-form {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.message-line {
+  align-items: flex-start;
+}
+
+.prompt {
+  color: var(--color-accent);
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  width: 100%;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+  font-size: 1rem;
+  padding: 0.25rem 0;
+}
+
+.terminal-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.terminal-submit {
+  margin-top: var(--spacing-sm);
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family-mono);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all var(--transition-fast);
+}
+
+.terminal-submit:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Meta Links */
+.contact-meta h3 {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+}
+
+.meta-list {
+  list-style: none;
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.meta-list a {
+  color: var(--color-text-primary);
+  transition: color var(--transition-fast);
+}
+
+.meta-list a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bar {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}

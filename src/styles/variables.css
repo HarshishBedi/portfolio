@@ -1,0 +1,67 @@
+/* CSS Variables - Engineered Minimalism */
+:root {
+  /* Colors - Technical High Contrast */
+  --color-bg-primary: #000000; /* True Black */
+  --color-bg-secondary: #0a0a0a; /* Very Dark Grey */
+  --color-bg-tertiary: #111111; /* Dark Grey for cards */
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #888888; /* Dimmed text */
+  --color-text-accent: #3b82f6; /* Electric Blue */
+  
+  --color-accent: #3b82f6; /* Electric Blue */
+  --color-accent-hover: #ffffff;
+  
+  --color-border: #333333; /* Visible Technical Borders */
+  --color-grid: #222222; /* Grid lines */
+
+  /* Typography - The "Terminal/Blueprint" Look */
+  --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  /* Transitions - Snap, don't float */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Borders */
+  --border-width: 1px;
+  --border-style: solid;
+}
+
+/* Global Reset overrides for this theme */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Utility for technical lines */
+.tech-border-bottom {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tech-border-top {
+  border-top: 1px solid var(--color-border);
+}

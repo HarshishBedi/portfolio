@@ -1,0 +1,122 @@
+.about {
+  padding: var(--spacing-xl) 0;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-primary);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--spacing-xl);
+}
+
+/* Profile Frame */
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-frame {
+  position: relative;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-sm);
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(1.2);
+  display: block;
+}
+
+.frame-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--color-accent);
+}
+
+.corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.profile-meta {
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Info Blocks */
+.info-block {
+  margin-bottom: var(--spacing-lg);
+}
+
+.block-title {
+  font-family: var(--font-family-mono);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-md);
+  font-size: 1rem;
+}
+
+.bio-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+}
+
+.edu-entry {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+}
+
+.edu-year {
+  color: var(--color-accent);
+  min-width: 100px;
+}
+
+.edu-loc {
+  color: var(--color-text-secondary);
+}
+
+.tech-grid {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.tech-category {
+  display: flex;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+}
+
+.cat-name {
+  color: var(--color-text-primary);
+  min-width: 60px;
+}
+
+.cat-val {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .edu-entry {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
