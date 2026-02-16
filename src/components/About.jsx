@@ -3,6 +3,7 @@ import { FadeIn } from './FadeIn'
 import './About.css'
 import headshot from '../assets/headshot.jpeg'
 import { siteContent } from '../content/siteContent'
+import { SectionAccent3D } from './SectionAccent3D'
 
 function renderBioPart(part, index) {
   if (part.style === 'em') return <em key={index}>{part.text}</em>
@@ -15,6 +16,10 @@ export function About() {
 
   return (
     <section id="about" className="about section">
+      <div className="about__ornament" aria-hidden="true">
+        <SectionAccent3D variant="about" />
+      </div>
+
       <div className="container">
         <FadeIn>
           <div className="section-label">

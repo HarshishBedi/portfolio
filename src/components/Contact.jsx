@@ -4,6 +4,7 @@ import { FiMail, FiPhone } from 'react-icons/fi'
 import { FadeIn } from './FadeIn'
 import './Contact.css'
 import { siteContent } from '../content/siteContent'
+import { SectionAccent3D } from './SectionAccent3D'
 
 export function Contact() {
   const [status, setStatus] = useState('idle') // idle | sending | success | error
@@ -45,6 +46,10 @@ export function Contact() {
 
   return (
     <section id="contact" className="contact section">
+      <div className="contact__ornament" aria-hidden="true">
+        <SectionAccent3D variant="contact" />
+      </div>
+
       <div className="container contact__inner">
         <FadeIn>
           <div className="section-label">
@@ -58,9 +63,9 @@ export function Contact() {
           {/* Left: CTA */}
           <FadeIn direction="left" delay={0.15}>
             <h2 className="contact__heading">
-              {contact.heading.line1}
-              <br />
-              {contact.heading.line2} <span className="contact__heading-accent">{contact.heading.accent}</span>
+              <span>{contact.heading.line1}</span>
+              <span>{contact.heading.line2}</span>
+              <span className="contact__heading-accent">{contact.heading.accent}</span>
             </h2>
             <p className="contact__text">{contact.blurb}</p>
 

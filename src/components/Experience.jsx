@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FadeIn } from './FadeIn'
+import { PdfModal } from './PdfModal'
+import { SectionAccent3D } from './SectionAccent3D'
 import './Experience.css'
 import { siteContent } from '../content/siteContent'
 
@@ -22,24 +24,12 @@ export function Experience() {
   const [activeLetter, setActiveLetter] = useState(null)
   const { sections, experience } = siteContent
 
-  useEffect(() => {
-    if (!activeLetter) return
-
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') setActiveLetter(null)
-    }
-
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onKeyDown)
-
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [activeLetter])
-
   return (
     <section id="experience" className="experience section">
+      <div className="experience__ornament" aria-hidden="true">
+        <SectionAccent3D variant="experience" />
+      </div>
+
       <div className="container">
         <FadeIn>
           <div className="section-label">
@@ -140,34 +130,12 @@ export function Experience() {
         </div>
       </div>
 
-      {activeLetter && (
-        <div
-          className="exp__pdf-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label={activeLetter.title}
-          onClick={() => setActiveLetter(null)}
-        >
-          <div className="exp__pdf-modal" onClick={(event) => event.stopPropagation()}>
-            <div className="exp__pdf-header">
-              <div className="exp__pdf-title">{activeLetter.title}</div>
-              <button
-                type="button"
-                className="exp__pdf-close"
-                onClick={() => setActiveLetter(null)}
-                aria-label={experience.pdfCloseAriaLabel}
-              >
-                {experience.pdfCloseText}
-              </button>
-            </div>
-            <iframe
-              className="exp__pdf-frame"
-              src={`${activeLetter.url}#view=FitH`}
-              title={activeLetter.title}
-            />
-          </div>
-        </div>
-      )}
+      <PdfModal
+        pdfDocument={activeLetter}
+        onClose={() => setActiveLetter(null)}
+        closeText={experience.pdfCloseText}
+        closeAriaLabel={experience.pdfCloseAriaLabel}
+      />
     </section>
   )
 }

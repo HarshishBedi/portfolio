@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { FadeIn } from './FadeIn'
 import './Projects.css'
 import { siteContent } from '../content/siteContent'
+import { SectionAccent3D } from './SectionAccent3D'
 
 function ProjectCard({ project, index }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
@@ -63,6 +64,10 @@ export function Projects() {
 
   return (
     <section id="projects" className="projects section">
+      <div className="projects__ornament" aria-hidden="true">
+        <SectionAccent3D variant="projects" />
+      </div>
+
       <div className="container">
         <FadeIn>
           <div className="section-label">

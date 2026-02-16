@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { FiArrowUpRight } from 'react-icons/fi'
-import { HeroScene } from './Scene3D'
 import './Hero.css'
 import { siteContent } from '../content/siteContent'
+
+const HeroScene = lazy(() => import('./Scene3D').then((mod) => ({ default: mod.HeroScene })))
 
 export function Hero() {
   const { profile, hero } = siteContent
@@ -19,7 +20,9 @@ export function Hero() {
     <section id="hero" className="hero">
       {/* Three.js Background */}
       <div className="hero__canvas">
-        <HeroScene />
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
       </div>
 
       <div className="container hero__content">

@@ -1,6 +1,32 @@
 .about {
+  position: relative;
   background: var(--color-bg);
   overflow: hidden;
+}
+
+.about .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about__ornament {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__ornament canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.about .section-label,
+.about__grid,
+.about__skills {
+  position: relative;
+  z-index: 1;
 }
 
 .about__grid {
@@ -173,9 +199,9 @@
   color: var(--color-accent-secondary);
   white-space: nowrap;
   padding: var(--space-2) var(--space-4);
-  border: 1px solid rgba(123, 97, 255, 0.24);
+  border: 1px solid rgba(var(--color-accent-secondary-rgb), 0.24);
   border-radius: var(--radius-full);
-  background: rgba(123, 97, 255, 0.06);
+  background: rgba(var(--color-accent-secondary-rgb), 0.06);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: all var(--transition-fast);
@@ -183,7 +209,7 @@
 
 .about__skill-tag:hover {
   color: var(--color-accent-secondary);
-  border-color: rgba(123, 97, 255, 0.46);
+  border-color: rgba(var(--color-accent-secondary-rgb), 0.46);
   background: var(--color-accent-secondary-glow);
 }
 
@@ -194,6 +220,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .about__ornament {
+    opacity: 0.15;
+  }
+
   .about__grid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
