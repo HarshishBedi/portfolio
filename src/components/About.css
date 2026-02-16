@@ -183,15 +183,38 @@
 @media (max-width: 768px) {
   .about__grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
   .about__image-wrap {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
+  }
+
+  .about__content {
+    gap: var(--space-4);
+    padding-top: 0;
   }
 
   .about__bio-card,
   .about__edu {
-    padding: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+  }
+
+  .about__bio {
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  .about__subtitle {
+    margin-bottom: var(--space-3);
+  }
+
+  .about__skill-tag {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .about__skills {
+    padding: var(--space-4) 0;
   }
 }

@@ -179,13 +179,49 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: var(--space-8);
+  }
+
   .hero__canvas {
     width: 100%;
     opacity: 0.25;
   }
 
+  .hero__content {
+    padding-top: var(--space-6);
+    padding-bottom: 60px;
+  }
+
+  .hero__meta {
+    display: none;
+  }
+
   .hero__name {
-    font-size: clamp(2.5rem, 14vw, 4.5rem);
+    font-size: clamp(2.2rem, 11vw, 4rem);
+    margin-bottom: var(--space-6);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero__desc {
+    font-size: var(--text-base);
+    max-width: 100%;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__actions {
+    gap: var(--space-3);
+  }
+
+  .hero__btn {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-xs);
   }
 
   .hero__scroll {

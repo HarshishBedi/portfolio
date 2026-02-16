@@ -130,6 +130,7 @@
 @media (max-width: 768px) {
   .proj__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   .proj__card {
@@ -137,7 +138,20 @@
     padding: var(--space-6);
   }
 
+  .proj__card-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .proj__title {
+    font-size: var(--text-xl);
+  }
+
+  .proj__desc {
+    font-size: var(--text-xs);
+    padding-bottom: var(--space-4);
+  }
+
   .proj__bg-num {
-    font-size: 6rem;
+    font-size: 5rem;
   }
 }

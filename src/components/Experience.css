@@ -1,5 +1,6 @@
 .experience {
   background: var(--color-bg-alt);
+  overflow: hidden;
 }
 
 /* Centered Timeline */
@@ -170,19 +171,35 @@
 /* Responsive — stack on mobile */
 @media (max-width: 768px) {
   .exp__timeline-line {
-    left: 12px;
+    left: 8px;
+    width: 2px;
     transform: none;
   }
 
   .exp__dot {
-    left: 12px;
+    left: 8px;
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 0 3px var(--color-bg-alt), 0 0 10px rgba(255, 60, 40, 0.2);
+  }
+
+  .exp__item {
+    padding-bottom: var(--space-10);
   }
 
   .exp__item--left,
   .exp__item--right {
-    padding-left: calc(24px + var(--space-6));
+    padding-left: calc(20px + var(--space-4));
     padding-right: 0;
     justify-content: flex-start;
+  }
+
+  .exp__card {
+    padding: var(--space-6) var(--space-8);
+    border: 1px solid var(--glass-border);
+    max-width: 100%;
+    margin-bottom: var(--space-4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   }
 
   .exp__item--left .exp__card {
@@ -209,3 +226,4 @@
     transform: translateX(4px);
   }
 }
+
