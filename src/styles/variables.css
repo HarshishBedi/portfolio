@@ -1,67 +1,82 @@
-/* CSS Variables - Engineered Minimalism */
+/* CSS Variables — Light Editorial */
 :root {
-  /* Colors - Technical High Contrast */
-  --color-bg-primary: #000000; /* True Black */
-  --color-bg-secondary: #0a0a0a; /* Very Dark Grey */
-  --color-bg-tertiary: #111111; /* Dark Grey for cards */
-  
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #888888; /* Dimmed text */
-  --color-text-accent: #3b82f6; /* Electric Blue */
-  
-  --color-accent: #3b82f6; /* Electric Blue */
-  --color-accent-hover: #ffffff;
-  
-  --color-border: #333333; /* Visible Technical Borders */
-  --color-grid: #222222; /* Grid lines */
+  /* ─── Core Light Palette ─── */
+  --color-bg: #F8F6F1;           /* Warm cream */
+  --color-bg-alt: #F0EDE6;       /* Subtle warm grey */
+  --color-bg-card: #FFFFFF;
+  --color-bg-elevated: #FFFFFF;
 
-  /* Typography - The "Terminal/Blueprint" Look */
-  --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-  
-  --font-size-base: 16px;
-  --line-height-base: 1.5;
-  
+  /* Text — dark on light */
+  --color-text: #1A1A1A;
+  --color-text-secondary: #5A5A5A;
+  --color-text-muted: #9A9A94;
+
+  /* Accent — vermillion stays, chartreuse for pops */
+  --color-accent: #FF3C28;
+  --color-accent-glow: rgba(255, 60, 40, 0.12);
+  --color-accent-secondary: #7B61FF;  /* Soft violet for variety */
+  --color-accent-secondary-glow: rgba(123, 97, 255, 0.08);
+  --color-accent-hover: #FF5E4A;
+
+  /* Neutrals */
+  --color-border: #E5E2DB;
+  --color-border-hover: #CFCBC3;
+
+  /* Typography */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
   /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
 
-  /* Transitions - Snap, don't float */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Borders */
-  --border-width: 1px;
-  --border-style: solid;
-}
+  /* Containers */
+  --container-max: 1200px;
+  --container-narrow: 800px;
 
-/* Global Reset overrides for this theme */
-body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: var(--font-family-base);
-  -webkit-font-smoothing: antialiased;
-}
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-medium: 0.4s var(--ease-out);
+  --transition-slow: 0.8s var(--ease-out);
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-mono);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  /* Shadows — light, warm */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-glow-accent: 0 8px 30px rgba(255, 60, 40, 0.15);
+  --shadow-glow-secondary: 0 8px 30px rgba(123, 97, 255, 0.12);
 
-/* Utility for technical lines */
-.tech-border-bottom {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.tech-border-top {
-  border-top: 1px solid var(--color-border);
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }

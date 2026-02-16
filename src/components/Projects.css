@@ -1,85 +1,157 @@
 .projects {
-  padding: var(--spacing-xl) 0;
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
 }
 
-.projects .container {
-  padding: 0 var(--spacing-md);
-}
-
-.projects-grid {
+.proj__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px; /* Gap for border effect */
-  background: var(--color-border); /* Create grid lines via gap */
-  border: 1px solid var(--color-border);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
 }
 
-.project-card {
-  background: var(--color-bg-primary);
-  padding: var(--spacing-md);
+/* Glass Card */
+.proj__card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  overflow: hidden;
+  transition: border-color var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-medium);
   display: flex;
   flex-direction: column;
-  transition: background var(--transition-fast);
-  height: 100%;
+  min-height: 280px;
+  will-change: transform;
+  box-shadow: var(--glass-shadow);
 }
 
-.project-card:hover {
-  background: var(--color-bg-tertiary);
+.proj__card:hover {
+  border-color: rgba(255, 60, 40, 0.15);
+  box-shadow: var(--glass-shadow), 0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
-.card-header {
+/* Background Number */
+.proj__bg-num {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-family: var(--font-display);
+  font-size: 10rem;
+  font-weight: 800;
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity var(--transition-medium);
+}
+
+.proj__card:hover .proj__bg-num {
+  opacity: 0.08;
+}
+
+/* Header */
+.proj__card-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--spacing-sm);
-  font-family: var(--font-family-mono);
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
+  align-items: center;
+  margin-bottom: var(--space-8);
 }
 
-.card-arrow {
+.proj__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+
+.proj__arrow {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+}
+
+.proj__card:hover .proj__arrow {
+  border-color: var(--color-accent);
   color: var(--color-accent);
-  opacity: 0;
-  transform: translate(-5px, 5px);
-  transition: all var(--transition-medium);
+  background: rgba(255, 60, 40, 0.08);
+  transform: translate(3px, -3px);
 }
 
-.project-card:hover .card-arrow {
-  opacity: 1;
-  transform: translate(0, 0);
+/* Content */
+.proj__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  transition: color var(--transition-fast);
 }
 
-.project-title {
-  font-family: var(--font-family-mono);
-  font-size: 1.25rem;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
+.proj__card:hover .proj__title {
+  color: var(--color-accent);
 }
 
-.project-desc {
-  font-size: 0.95rem;
+.proj__desc {
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
-  line-height: 1.5;
-  margin-bottom: var(--spacing-md);
-  flex-grow: 1;
+  line-height: 1.7;
+  margin-bottom: auto;
+  padding-bottom: var(--space-6);
 }
 
-.project-stack {
+/* Stack Tags — glass pills */
+.proj__stack {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  gap: var(--space-2);
 }
 
-.tech-tag {
-  font-family: var(--font-family-mono);
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  border: 1px solid var(--color-border);
-  padding: 0.2rem 0.5rem;
+.proj__tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent-secondary);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgba(123, 97, 255, 0.2);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.03em;
+  background: rgba(123, 97, 255, 0.05);
+  backdrop-filter: blur(4px);
 }
 
-@media (max-width: 600px) {
-  .projects-grid {
+/* Responsive */
+@media (max-width: 768px) {
+  .proj__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .proj__card {
+    min-height: auto;
+    padding: var(--space-6);
+  }
+
+  .proj__card-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .proj__title {
+    font-size: var(--text-xl);
+  }
+
+  .proj__desc {
+    font-size: var(--text-xs);
+    padding-bottom: var(--space-4);
+  }
+
+  .proj__bg-num {
+    font-size: 5rem;
   }
 }

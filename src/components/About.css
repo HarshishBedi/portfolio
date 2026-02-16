@@ -1,139 +1,220 @@
 .about {
-  padding: var(--spacing-xl) 0;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg-primary);
+  background: var(--color-bg);
+  overflow: hidden;
 }
 
-.about-grid {
+.about__grid {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: var(--spacing-xl);
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-16);
 }
 
-/* Profile Frame */
-.profile-column {
+/* Visual Column */
+.about__image-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: var(--shadow-lg);
+}
+
+.about__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-medium);
+}
+
+.about__image-wrap:hover .about__image {
+  transform: scale(1.03);
+}
+
+/* Content Column */
+.about__content {
+  padding-top: var(--space-4);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: var(--space-6);
 }
 
-.profile-frame {
-  position: relative;
-  padding: 10px;
-  border: 1px solid var(--color-border);
-  margin-bottom: var(--spacing-sm);
-  max-width: 100%; /* Ensure it doesn't overflow */
+/* Glass bio card */
+.about__bio-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--glass-shadow);
 }
 
-.profile-image {
-  width: 100%;
-  height: auto;
-  filter: grayscale(100%) contrast(1.2);
-  display: block;
-}
-
-.frame-corner {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 2px solid var(--color-accent);
-}
-
-.corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-.corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
-.corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
-.corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-
-.profile-meta {
-  font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+.about__bio {
+  font-size: var(--text-lg);
   color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+}
+
+.about__bio:last-child {
+  margin-bottom: 0;
+}
+
+.about__bio em {
+  color: var(--color-accent);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.about__bio strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Education — glass card */
+.about__edu {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+  box-shadow: var(--glass-shadow);
+}
+
+.about__subtitle {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.about__edu-item {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.about__edu-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about__edu-degree {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.about__edu-meta {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-}
-
-/* Info Blocks */
-.info-block {
-  margin-bottom: var(--spacing-lg);
-}
-
-.block-title {
-  font-family: var(--font-family-mono);
-  color: var(--color-accent);
-  margin-bottom: var(--spacing-md);
-  font-size: 1rem;
-}
-
-.bio-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
-  max-width: 600px;
 }
 
-.edu-entry {
+.about__edu-year {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+}
+
+/* Skills Marquee */
+.about__skills {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-6) 0;
+}
+
+.about__marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.about__marquee-track {
   display: flex;
-  align-items: baseline;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-  font-family: var(--font-family-mono);
-  font-size: 0.9rem;
+  gap: var(--space-4);
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
 
-.edu-year {
+.about__skill-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+}
+
+.about__skill-tag:hover {
   color: var(--color-accent);
-  min-width: 100px;
+  border-color: var(--color-accent);
+  background: rgba(255, 60, 40, 0.06);
 }
 
-.edu-loc {
-  color: var(--color-text-secondary);
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.tech-grid {
-  display: grid;
-  gap: var(--spacing-sm);
-}
-
-.tech-category {
-  display: flex;
-  gap: var(--spacing-sm);
-  font-family: var(--font-family-mono);
-  font-size: 0.9rem;
-}
-
-.cat-name {
-  color: var(--color-text-primary);
-  min-width: 60px;
-}
-
-.cat-val {
-  color: var(--color-text-secondary);
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  .about-grid {
+  .about__grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--space-6);
   }
-  
-  .profile-column {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+
+  .about__image-wrap {
+    aspect-ratio: 3/4;
   }
-  
-  .edu-entry {
-    flex-direction: column;
-    gap: 0.25rem;
+
+  .about__content {
+    gap: var(--space-4);
+    padding-top: 0;
   }
-  
-  .tech-category {
-    flex-direction: column;
-    gap: 0.25rem;
+
+  .about__bio-card,
+  .about__edu {
+    padding: var(--space-6) var(--space-8);
   }
-  
-  .about-grid {
-    padding: 0 var(--spacing-md);
+
+  .about__bio {
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  .about__subtitle {
+    margin-bottom: var(--space-3);
+  }
+
+  .about__skill-tag {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .about__skills {
+    padding: var(--space-4) 0;
   }
 }

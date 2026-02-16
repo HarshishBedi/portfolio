@@ -1,73 +1,88 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+import { FadeIn, StaggerGroup, staggerItem } from './FadeIn'
 import './About.css'
 import headshot from '../assets/headshot.jpg'
 
+const skills = [
+  'Python', 'C++', 'Java', 'JavaScript', 'SQL', 'PyTorch', 'TensorFlow',
+  'CUDA', 'OpenCV', 'LangChain', 'FastAPI', 'React', 'Docker', 'Kubernetes',
+  'AWS', 'PostgreSQL', 'Redis', 'Git'
+]
+
 export function About() {
   return (
-    <section id="about" className="about">
+    <section id="about" className="about section">
       <div className="container">
-        <h2 className="section-title">
-          <span className="section-prefix">00.</span> SYSTEM_PROFILE
-        </h2>
-        
-        <div className="about-grid">
-          <div className="profile-column">
-            <div className="profile-frame">
-              <img src={headshot} alt="HARSHISH_BEDI" className="profile-image" />
-              <div className="frame-corner corner-tl"></div>
-              <div className="frame-corner corner-tr"></div>
-              <div className="frame-corner corner-bl"></div>
-              <div className="frame-corner corner-br"></div>
-            </div>
-            <div className="profile-meta">
-              <span>ID: HSB_001</span>
-              <span>STATUS: ACTIVE</span>
-            </div>
+        <FadeIn>
+          <div className="section-label">
+            <span className="section-number">01</span>
+            <span className="section-title">About</span>
+            <div className="section-line"></div>
           </div>
+        </FadeIn>
 
-          <div className="info-column">
-            <div className="info-block">
-              <h3 className="block-title">// BIO_DATA</h3>
-              <p className="bio-text">
-                Machine Learning Engineer specializing in high-performance computing and intelligent systems.
-                Currently architecting scalable solutions at Rutgers University. Focus on LLM integration,
-                computer vision pipelines, and real-time data processing.
-              </p>
+        <div className="about__grid">
+          {/* Left: Image */}
+          <FadeIn direction="left" delay={0.1}>
+            <div className="about__image-wrap">
+              <img src={headshot} alt="Harshish Bedi" className="about__image" />
             </div>
+          </FadeIn>
 
-            <div className="info-block">
-              <h3 className="block-title">// EDUCATION_LOG</h3>
-              <div className="edu-entry">
-                <span className="edu-year">[2024-2026]</span>
-                <strong>MS Computer Science</strong>
-                <span className="edu-loc">Rutgers University, NJ</span>
+          {/* Right: Content */}
+          <div className="about__content">
+            <FadeIn direction="right" delay={0.2}>
+              <div className="about__bio-card">
+                <p className="about__bio">
+                  Machine Learning Engineer with a sharp focus on <em>performance-critical systems</em>.
+                  I architect solutions that bridge the gap between research and production — from
+                  CUDA-accelerated parsers to real-time inference pipelines.
+                </p>
+                <p className="about__bio">
+                  Currently pursuing my MS in Computer Science at <strong>Rutgers University</strong>,
+                  where I research transit resilience using graph neural networks and build
+                  computer vision pipelines for aerial infrastructure detection.
+                </p>
               </div>
-              <div className="edu-entry">
-                <span className="edu-year">[2019-2023]</span>
-                <strong>BE Computer Science</strong>
-                <span className="edu-loc">University of Mumbai, IN</span>
-              </div>
-            </div>
+            </FadeIn>
 
-            <div className="info-block">
-              <h3 className="block-title">// TECHNICAL_STACK</h3>
-              <div className="tech-grid">
-                <div className="tech-category">
-                  <span className="cat-name">LANGS:</span>
-                  <span className="cat-val">Python, C++, Java, SQL, JavaScript</span>
+            <FadeIn delay={0.35}>
+              <div className="about__edu">
+                <h3 className="about__subtitle">Education</h3>
+                <div className="about__edu-item">
+                  <div className="about__edu-degree">MS Computer Science</div>
+                  <div className="about__edu-meta">
+                    <span>Rutgers University, NJ</span>
+                    <span className="about__edu-year">2024 — 2026</span>
+                  </div>
                 </div>
-                <div className="tech-category">
-                  <span className="cat-name">AI/ML:</span>
-                  <span className="cat-val">PyTorch, TensorFlow, CUDA, OpenCV</span>
-                </div>
-                <div className="tech-category">
-                  <span className="cat-name">INFRA:</span>
-                  <span className="cat-val">AWS, Docker, Kubernetes, FastAPI</span>
+                <div className="about__edu-item">
+                  <div className="about__edu-degree">BE Computer Science</div>
+                  <div className="about__edu-meta">
+                    <span>University of Mumbai, IN</span>
+                    <span className="about__edu-year">2019 — 2023</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
+
+        {/* Skills Marquee */}
+        <FadeIn delay={0.4}>
+          <div className="about__skills">
+            <div className="about__marquee">
+              <div className="about__marquee-track">
+                {[...skills, ...skills].map((skill, i) => (
+                  <span key={i} className="about__skill-tag">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
