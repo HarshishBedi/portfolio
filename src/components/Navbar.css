@@ -65,14 +65,14 @@
 .navbar__link-num {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-accent);
+  color: var(--color-accent-secondary);
   opacity: 0;
   transform: translateX(-8px);
   transition: all var(--transition-fast);
 }
 
 .navbar__link:hover {
-  color: var(--color-text);
+  color: var(--color-accent-secondary);
 }
 
 .navbar__link:hover .navbar__link-num {
@@ -140,7 +140,7 @@
 }
 
 .navbar__mobile-link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-secondary);
 }
 
 .navbar__mobile-link .navbar__link-num {

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Navbar.css'
+import { siteContent } from '../content/siteContent'
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const { profile, navbar } = siteContent
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,12 +25,7 @@ export function Navbar() {
     }
   }
 
-  const navLinks = [
-    { label: 'About', id: 'about' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Contact', id: 'contact' },
-  ]
+  const navLinks = navbar.links
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
@@ -38,8 +35,8 @@ export function Navbar() {
           className="navbar__logo"
           onClick={(e) => scrollToSection(e, 'app')}
         >
-          HSB
-          <span className="navbar__logo-dot">.</span>
+          {profile.logo}
+          <span className="navbar__logo-dot">{navbar.logoDot}</span>
         </a>
 
         {/* Desktop Links */}
@@ -61,7 +58,7 @@ export function Navbar() {
         <button
           className={`navbar__burger ${isMobileOpen ? 'navbar__burger--open' : ''}`}
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={navbar.toggleLabel}
         >
           <span></span>
           <span></span>

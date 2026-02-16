@@ -1,12 +1,20 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { FiArrowUpRight } from 'react-icons/fi'
 import { HeroScene } from './Scene3D'
 import './Hero.css'
+import { siteContent } from '../content/siteContent'
 
 export function Hero() {
+  const { profile, hero } = siteContent
+  const socialIconMap = {
+    github: FaGithub,
+    linkedin: FaLinkedinIn,
+    leetcode: SiLeetcode,
+  }
+
   return (
     <section id="hero" className="hero">
       {/* Three.js Background */}
@@ -21,9 +29,12 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="hero__tag">Machine Learning Engineer</span>
-          <span className="hero__tag-divider">&</span>
-          <span className="hero__tag">Software Developer</span>
+          {hero.roleTags.map((tag, index) => (
+            <React.Fragment key={tag}>
+              {index > 0 && <span className="hero__tag-divider">&</span>}
+              <span className="hero__tag">{tag}</span>
+            </React.Fragment>
+          ))}
         </motion.div>
 
         <motion.h1
@@ -32,9 +43,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          Harshish
+          {profile.firstName}
           <br />
-          <span className="hero__name-accent">Singh Bedi</span>
+          <span className="hero__name-accent">{profile.lastName}</span>
         </motion.h1>
 
         <motion.p
@@ -43,8 +54,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          Building high-frequency trading parsers, document intelligence systems,
-          and scalable ML infrastructure. Currently at Rutgers University.
+          {hero.description}
         </motion.p>
 
         <motion.div
@@ -53,17 +63,29 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <a href="https://github.com/harshishbedi" target="_blank" rel="noopener noreferrer" className="hero__btn hero__btn--white">
-            <FaGithub size={18} />
-            GitHub
-          </a>
-          <a href="https://leetcode.com/harshishbedi" target="_blank" rel="noopener noreferrer" className="hero__btn hero__btn--white">
-            <SiLeetcode size={18} />
-            LeetCode
-          </a>
+          {hero.socialButtons.map((button) => {
+            const Icon = socialIconMap[button.key]
+            const href = profile.links[button.key]
+            if (!Icon || !href) return null
+
+            return (
+              <a
+                key={button.key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero__btn hero__btn--white hero__btn--icon"
+                aria-label={button.label}
+                title={button.label}
+              >
+                <Icon size={18} />
+                <span className="hero__btn-tooltip">{button.label}</span>
+              </a>
+            )
+          })}
           <a href="#contact" className="hero__btn hero__btn--accent">
             <FiArrowUpRight size={18} />
-            Get in Touch
+            {hero.ctaText}
           </a>
         </motion.div>
       </div>
@@ -75,7 +97,7 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <span>Scroll</span>
+        <span>{hero.scrollLabel}</span>
         <div className="hero__scroll-line"></div>
       </motion.div>
     </section>

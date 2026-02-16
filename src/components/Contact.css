@@ -64,11 +64,11 @@
 }
 
 .contact__icon:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--color-accent-secondary);
+  border-color: var(--color-accent-secondary);
   color: #fff;
   transform: translateY(-4px);
-  box-shadow: var(--shadow-glow-accent);
+  box-shadow: var(--shadow-glow-secondary);
 }
 
 /* Tooltip */
@@ -87,6 +87,7 @@
 }
 
 .contact__icon:hover .contact__icon-tooltip {
+  color: var(--color-accent-secondary);
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
@@ -137,8 +138,8 @@
 }
 
 .contact__input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(255, 60, 40, 0.08);
+  border-color: var(--color-accent-secondary);
+  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.1);
   background: rgba(255, 255, 255, 0.7);
 }
 

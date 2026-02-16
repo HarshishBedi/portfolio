@@ -1,32 +1,34 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import { FadeIn, StaggerGroup, staggerItem } from './FadeIn'
+import { FadeIn } from './FadeIn'
 import './About.css'
-import headshot from '../assets/headshot.jpg'
+import headshot from '../assets/headshot.jpeg'
+import { siteContent } from '../content/siteContent'
 
-const skills = [
-  'Python', 'C++', 'Java', 'JavaScript', 'SQL', 'PyTorch', 'TensorFlow',
-  'CUDA', 'OpenCV', 'LangChain', 'FastAPI', 'React', 'Docker', 'Kubernetes',
-  'AWS', 'PostgreSQL', 'Redis', 'Git'
-]
+function renderBioPart(part, index) {
+  if (part.style === 'em') return <em key={index}>{part.text}</em>
+  if (part.style === 'strong') return <strong key={index}>{part.text}</strong>
+  return <React.Fragment key={index}>{part.text}</React.Fragment>
+}
 
 export function About() {
+  const { sections, about } = siteContent
+
   return (
     <section id="about" className="about section">
       <div className="container">
         <FadeIn>
           <div className="section-label">
-            <span className="section-number">01</span>
-            <span className="section-title">About</span>
+            <span className="section-number">{sections.about.number}</span>
+            <span className="section-title">{sections.about.title}</span>
             <div className="section-line"></div>
           </div>
         </FadeIn>
 
         <div className="about__grid">
           {/* Left: Image */}
-          <FadeIn direction="left" delay={0.1}>
+          <FadeIn direction="left" delay={0.1} className="about__image-col">
             <div className="about__image-wrap">
-              <img src={headshot} alt="Harshish Bedi" className="about__image" />
+              <img src={headshot} alt={about.imageAlt} className="about__image" />
             </div>
           </FadeIn>
 
@@ -34,36 +36,26 @@ export function About() {
           <div className="about__content">
             <FadeIn direction="right" delay={0.2}>
               <div className="about__bio-card">
-                <p className="about__bio">
-                  Machine Learning Engineer with a sharp focus on <em>performance-critical systems</em>.
-                  I architect solutions that bridge the gap between research and production — from
-                  CUDA-accelerated parsers to real-time inference pipelines.
-                </p>
-                <p className="about__bio">
-                  Currently pursuing my MS in Computer Science at <strong>Rutgers University</strong>,
-                  where I research transit resilience using graph neural networks and build
-                  computer vision pipelines for aerial infrastructure detection.
-                </p>
+                {about.bioParagraphs.map((paragraph, index) => (
+                  <p key={index} className="about__bio">
+                    {paragraph.map((part, partIndex) => renderBioPart(part, partIndex))}
+                  </p>
+                ))}
               </div>
             </FadeIn>
 
             <FadeIn delay={0.35}>
               <div className="about__edu">
-                <h3 className="about__subtitle">Education</h3>
-                <div className="about__edu-item">
-                  <div className="about__edu-degree">MS Computer Science</div>
-                  <div className="about__edu-meta">
-                    <span>Rutgers University, NJ</span>
-                    <span className="about__edu-year">2024 — 2026</span>
+                <h3 className="about__subtitle">{about.educationTitle}</h3>
+                {about.education.map((item) => (
+                  <div key={item.degree} className="about__edu-item">
+                    <div className="about__edu-degree">{item.degree}</div>
+                    <div className="about__edu-meta">
+                      <span>{item.school}</span>
+                      <span className="about__edu-year">{item.year}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="about__edu-item">
-                  <div className="about__edu-degree">BE Computer Science</div>
-                  <div className="about__edu-meta">
-                    <span>University of Mumbai, IN</span>
-                    <span className="about__edu-year">2019 — 2023</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </FadeIn>
           </div>
@@ -74,7 +66,7 @@ export function About() {
           <div className="about__skills">
             <div className="about__marquee">
               <div className="about__marquee-track">
-                {[...skills, ...skills].map((skill, i) => (
+                {[...about.skills, ...about.skills].map((skill, i) => (
                   <span key={i} className="about__skill-tag">
                     {skill}
                   </span>

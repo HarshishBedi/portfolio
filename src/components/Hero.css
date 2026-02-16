@@ -44,7 +44,7 @@
 .hero__tag {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  color: var(--color-accent);
+  color: var(--color-accent-secondary);
   letter-spacing: 0.05em;
 }
 
@@ -112,6 +112,25 @@
   transform: translateY(-2px);
 }
 
+.hero__btn--icon {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  gap: 0;
+  justify-content: center;
+  overflow: visible;
+  transition: all var(--transition-fast);
+}
+
+.hero__btn--icon:hover {
+  background: var(--color-accent-secondary);
+  border-color: var(--color-accent-secondary);
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-secondary);
+}
+
 .hero__btn--accent {
   background: var(--color-accent);
   color: #fff;
@@ -130,6 +149,29 @@
 
 .hero__btn:hover svg {
   transform: scale(1.1);
+}
+
+.hero__btn--icon:hover svg {
+  transform: none;
+}
+
+.hero__btn-tooltip {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-fast);
+}
+
+.hero__btn--icon:hover .hero__btn-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Scroll Indicator */
@@ -228,6 +270,12 @@
   .hero__btn {
     padding: var(--space-3) var(--space-6);
     font-size: var(--text-xs);
+  }
+
+  .hero__btn--icon {
+    width: 44px;
+    height: 44px;
+    padding: 0;
   }
 
   .hero__scroll {

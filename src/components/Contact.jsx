@@ -3,9 +3,17 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { FiMail, FiPhone } from 'react-icons/fi'
 import { FadeIn } from './FadeIn'
 import './Contact.css'
+import { siteContent } from '../content/siteContent'
 
 export function Contact() {
   const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const { profile, sections, contact } = siteContent
+  const channelIconMap = {
+    email: FiMail,
+    phone: FiPhone,
+    github: FaGithub,
+    linkedin: FaLinkedinIn,
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -40,8 +48,8 @@ export function Contact() {
       <div className="container contact__inner">
         <FadeIn>
           <div className="section-label">
-            <span className="section-number">04</span>
-            <span className="section-title">Contact</span>
+            <span className="section-number">{sections.contact.number}</span>
+            <span className="section-title">{sections.contact.title}</span>
             <div className="section-line"></div>
           </div>
         </FadeIn>
@@ -50,32 +58,34 @@ export function Contact() {
           {/* Left: CTA */}
           <FadeIn direction="left" delay={0.15}>
             <h2 className="contact__heading">
-              Let's build
+              {contact.heading.line1}
               <br />
-              something <span className="contact__heading-accent">great</span>
+              {contact.heading.line2} <span className="contact__heading-accent">{contact.heading.accent}</span>
             </h2>
-            <p className="contact__text">
-              Open to collaborations, research opportunities, and interesting engineering challenges.
-              Drop a message or reach out through any of the channels below.
-            </p>
+            <p className="contact__text">{contact.blurb}</p>
 
             <div className="contact__icons">
-              <a href="mailto:harshishsbedi@gmail.com" className="contact__icon" aria-label="Email">
-                <FiMail size={22} />
-                <span className="contact__icon-tooltip">Email</span>
-              </a>
-              <a href="tel:+17323222705" className="contact__icon" aria-label="Phone">
-                <FiPhone size={22} />
-                <span className="contact__icon-tooltip">Phone</span>
-              </a>
-              <a href="https://github.com/harshishbedi" target="_blank" rel="noopener noreferrer" className="contact__icon" aria-label="GitHub">
-                <FaGithub size={22} />
-                <span className="contact__icon-tooltip">GitHub</span>
-              </a>
-              <a href="https://linkedin.com/in/harshishbedi" target="_blank" rel="noopener noreferrer" className="contact__icon" aria-label="LinkedIn">
-                <FaLinkedinIn size={22} />
-                <span className="contact__icon-tooltip">LinkedIn</span>
-              </a>
+              {contact.channels.map((channel) => {
+                const Icon = channelIconMap[channel.key]
+                const href = profile.links[channel.key]
+                if (!Icon || !href) return null
+
+                const external = channel.key === 'github' || channel.key === 'linkedin'
+
+                return (
+                  <a
+                    key={channel.key}
+                    href={href}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    className="contact__icon"
+                    aria-label={channel.label}
+                  >
+                    <Icon size={22} />
+                    <span className="contact__icon-tooltip">{channel.label}</span>
+                  </a>
+                )
+              })}
             </div>
           </FadeIn>
 
@@ -93,39 +103,39 @@ export function Contact() {
                 <input type="hidden" name="form-name" value="contact" />
                 <p hidden>
                   <label>
-                    Don't fill this out: <input name="bot-field" />
+                    {contact.form.honeypotLabel} <input name="bot-field" />
                   </label>
                 </p>
 
                 <div className="contact__field">
-                  <label className="contact__label" htmlFor="name">Name</label>
+                  <label className="contact__label" htmlFor="name">{contact.form.nameLabel}</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     className="contact__input"
-                    placeholder="Your name"
+                    placeholder={contact.form.namePlaceholder}
                     required
                   />
                 </div>
                 <div className="contact__field">
-                  <label className="contact__label" htmlFor="email">Email</label>
+                  <label className="contact__label" htmlFor="email">{contact.form.emailLabel}</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     className="contact__input"
-                    placeholder="you@example.com"
+                    placeholder={contact.form.emailPlaceholder}
                     required
                   />
                 </div>
                 <div className="contact__field">
-                  <label className="contact__label" htmlFor="message">Message</label>
+                  <label className="contact__label" htmlFor="message">{contact.form.messageLabel}</label>
                   <textarea
                     id="message"
                     name="message"
                     className="contact__input contact__textarea"
-                    placeholder="Tell me about your project..."
+                    placeholder={contact.form.messagePlaceholder}
                     rows="5"
                     required
                   ></textarea>
@@ -138,15 +148,15 @@ export function Contact() {
                 >
                   {status === 'idle' && (
                     <>
-                      Send Message
+                      {contact.form.submitIdle}
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </>
                   )}
-                  {status === 'sending' && 'Sending...'}
-                  {status === 'success' && '✓ Sent!'}
-                  {status === 'error' && 'Failed – try again'}
+                  {status === 'sending' && contact.form.submitSending}
+                  {status === 'success' && contact.form.submitSuccess}
+                  {status === 'error' && contact.form.submitError}
                 </button>
               </form>
             </div>
@@ -156,8 +166,8 @@ export function Contact() {
         {/* Footer */}
         <FadeIn delay={0.4}>
           <footer className="contact__footer">
-            <span>© {new Date().getFullYear()} Harshish Bedi</span>
-            <span>Built with React + Three.js</span>
+            <span>© {new Date().getFullYear()} {profile.fullName}</span>
+            <span>{contact.footer.builtWith}</span>
           </footer>
         </FadeIn>
       </div>
