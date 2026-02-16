@@ -1,49 +1,103 @@
 import React from 'react'
+import { FadeIn } from './FadeIn'
 import './Contact.css'
 
 export function Contact() {
   return (
-    <section id="contact" className="contact">
-      <div className="container contact-container">
-        <h2 className="section-title">
-          <span className="section-prefix">03.</span> INIT_CONTACT
-        </h2>
-        
-        <div className="contact-layout">
-          <div className="contact-terminal">
-            <div className="terminal-header">User@System:~/messages</div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" className="terminal-form">
-              <div className="terminal-line">
-                <span className="prompt">$</span>
-                <input type="text" name="name" placeholder="enter_name" required className="terminal-input" />
-              </div>
-              <div className="terminal-line">
-                <span className="prompt">$</span>
-                <input type="email" name="email" placeholder="enter_email" required className="terminal-input" />
-              </div>
-              <div className="terminal-line message-line">
-                <span className="prompt">$</span>
-                <textarea name="message" placeholder="write_message..." required rows="4" className="terminal-input"></textarea>
-              </div>
-              <button type="submit" className="terminal-submit">[ EXECUTE_SEND ]</button>
-            </form>
+    <section id="contact" className="contact section">
+      <div className="container contact__inner">
+        <FadeIn>
+          <div className="section-label">
+            <span className="section-number">04</span>
+            <span className="section-title">Contact</span>
+            <div className="section-line"></div>
           </div>
+        </FadeIn>
 
-          <div className="contact-meta">
-            <h3>Alternative Channels</h3>
-            <ul className="meta-list">
-              <li><a href="mailto:harshishsbedi@gmail.com">EMAIL :: harshishsbedi@gmail.com</a></li>
-              <li><a href="tel:+17323222705">VOICE :: +1 (732) 322-2705</a></li>
-              <li><a href="https://github.com/harshishbedi">GIT :: github.com/harshishbedi</a></li>
-              <li><a href="https://linkedin.com/in/harshishbedi">LINK :: linkedin.com/in/harshishbedi</a></li>
-            </ul>
-          </div>
+        <div className="contact__layout">
+          {/* Left: CTA */}
+          <FadeIn direction="left" delay={0.15}>
+            <h2 className="contact__heading">
+              Let's build
+              <br />
+              something <span className="contact__heading-accent">great</span>
+            </h2>
+            <p className="contact__text">
+              Open to collaborations, research opportunities, and interesting engineering challenges.
+              Drop a message or reach out through any of the channels below.
+            </p>
+
+            <div className="contact__links">
+              <a href="mailto:harshishsbedi@gmail.com" className="contact__link">
+                <span className="contact__link-label">Email</span>
+                <span className="contact__link-value">harshishsbedi@gmail.com</span>
+              </a>
+              <a href="https://github.com/harshishbedi" target="_blank" rel="noopener noreferrer" className="contact__link">
+                <span className="contact__link-label">GitHub</span>
+                <span className="contact__link-value">github.com/harshishbedi</span>
+              </a>
+              <a href="https://linkedin.com/in/harshishbedi" target="_blank" rel="noopener noreferrer" className="contact__link">
+                <span className="contact__link-label">LinkedIn</span>
+                <span className="contact__link-value">linkedin.com/in/harshishbedi</span>
+              </a>
+            </div>
+          </FadeIn>
+
+          {/* Right: Form */}
+          <FadeIn direction="right" delay={0.25}>
+            <div className="contact__form-wrap">
+              <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" className="contact__form">
+                <div className="contact__field">
+                  <label className="contact__label" htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="contact__input"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div className="contact__field">
+                  <label className="contact__label" htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="contact__input"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+                <div className="contact__field">
+                  <label className="contact__label" htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="contact__input contact__textarea"
+                    placeholder="Tell me about your project..."
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" className="contact__submit">
+                  Send Message
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </FadeIn>
         </div>
-        
-        <footer className="footer-bar">
-          <span>SYSTEM STATUS: OPERATIONAL</span>
-          <span>© {new Date().getFullYear()} HSB_ENGINEERING</span>
-        </footer>
+
+        {/* Footer */}
+        <FadeIn delay={0.4}>
+          <footer className="contact__footer">
+            <span>© {new Date().getFullYear()} Harshish Bedi</span>
+            <span>Built with React + Three.js</span>
+          </footer>
+        </FadeIn>
       </div>
     </section>
   )
