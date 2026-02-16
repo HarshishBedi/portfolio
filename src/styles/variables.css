@@ -1,26 +1,28 @@
-/* CSS Variables — Light Editorial */
+/* CSS Variables — Earthy Olive + Gold */
 :root {
-  /* ─── Core Light Palette ─── */
-  --color-bg: #F8F6F1;           /* Warm cream */
-  --color-bg-alt: #F0EDE6;       /* Subtle warm grey */
+  /* Core Palette */
+  --color-bg: #F4F1EA;
+  --color-bg-alt: #EAE4D7;
   --color-bg-card: #FFFFFF;
   --color-bg-elevated: #FFFFFF;
 
-  /* Text — dark on light */
-  --color-text: #1A1A1A;
-  --color-text-secondary: #5A5A5A;
-  --color-text-muted: #9A9A94;
+  /* Text */
+  --color-text: #2E281F;
+  --color-text-secondary: #5F5445;
+  --color-text-muted: #8F8370;
 
-  /* Accent — vermillion stays, chartreuse for pops */
-  --color-accent: #FF3C28;
-  --color-accent-glow: rgba(255, 60, 40, 0.12);
-  --color-accent-secondary: #7B61FF;  /* Soft violet for variety */
-  --color-accent-secondary-glow: rgba(123, 97, 255, 0.08);
-  --color-accent-hover: #FF5E4A;
+  /* Accents */
+  --color-accent: #6F7D4B;
+  --color-accent-hover: #7D8D56;
+  --color-accent-secondary: #C4A15B;
+  --color-accent-rgb: 111, 125, 75;
+  --color-accent-secondary-rgb: 196, 161, 91;
+  --color-accent-glow: rgba(var(--color-accent-rgb), 0.1);
+  --color-accent-secondary-glow: rgba(var(--color-accent-secondary-rgb), 0.1);
 
   /* Neutrals */
-  --color-border: #E5E2DB;
-  --color-border-hover: #CFCBC3;
+  --color-border: #D9D0BF;
+  --color-border-hover: #C8BCA9;
 
   /* Typography */
   --font-display: 'Syne', system-ui, sans-serif;
@@ -66,17 +68,17 @@
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* Shadows — light, warm */
+  /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
-  --shadow-glow-accent: 0 8px 30px rgba(255, 60, 40, 0.15);
-  --shadow-glow-secondary: 0 8px 30px rgba(123, 97, 255, 0.12);
+  --shadow-glow-accent: 0 8px 24px rgba(var(--color-accent-rgb), 0.2);
+  --shadow-glow-secondary: 0 8px 24px rgba(var(--color-accent-secondary-rgb), 0.22);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.46);
+  --glass-bg-strong: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.42);
   --glass-blur: 16px;
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }

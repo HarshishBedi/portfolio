@@ -1,42 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { FadeIn } from './FadeIn'
 import './Projects.css'
-
-const projectsData = [
-  {
-    id: '01',
-    title: 'Utilbelt.io',
-    desc: 'Privacy-first developer toolkit with 100% client-side logic via WebAssembly and JS. Zero data leaves the browser.',
-    stack: ['React', 'Vite', 'PWA', 'WebAssembly'],
-    link: 'https://utilbelt.io',
-    color: 'var(--color-accent)'
-  },
-  {
-    id: '02',
-    title: 'Doc Smart',
-    desc: 'RAG-powered document intelligence system. Smart 1000-char chunking with semantic vector retrieval for enterprise docs.',
-    stack: ['Python', 'LangChain', 'ChromaDB', 'FastAPI'],
-    link: '#',
-    color: 'var(--color-accent-secondary)'
-  },
-  {
-    id: '03',
-    title: 'SigFlow',
-    desc: 'NASDAQ ITCH v5 protocol parser. Nanosecond-level order book reconstruction using CUDA-accelerated processing.',
-    stack: ['CUDA', 'C++', 'Python', 'NumPy'],
-    link: '#',
-    color: 'var(--color-accent)'
-  },
-  {
-    id: '04',
-    title: 'R-Nav',
-    desc: 'Autonomous navigation CNN achieving 95.7% accuracy. GPU-optimized training pipeline with real-time ROS integration.',
-    stack: ['PyTorch', 'CNN', 'ROS', 'Python'],
-    link: '#',
-    color: 'var(--color-accent-secondary)'
-  }
-]
+import { siteContent } from '../content/siteContent'
+import { SectionAccent3D } from './SectionAccent3D'
 
 function ProjectCard({ project, index }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
@@ -69,10 +35,10 @@ function ProjectCard({ project, index }) {
         }}
       >
         {/* Background number */}
-        <span className="proj__bg-num" style={{ color: project.color }}>{project.id}</span>
+        <span className="proj__bg-num">{project.id}</span>
 
         <div className="proj__card-header">
-          <span className="proj__num" style={{ color: project.color }}>/{project.id}</span>
+          <span className="proj__num">/{project.id}</span>
           <div className="proj__arrow">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M5 15L15 5M15 5H7M15 5V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -94,19 +60,25 @@ function ProjectCard({ project, index }) {
 }
 
 export function Projects() {
+  const { sections, projects } = siteContent
+
   return (
     <section id="projects" className="projects section">
+      <div className="projects__ornament" aria-hidden="true">
+        <SectionAccent3D variant="projects" />
+      </div>
+
       <div className="container">
         <FadeIn>
           <div className="section-label">
-            <span className="section-number">03</span>
-            <span className="section-title">Projects</span>
+            <span className="section-number">{sections.projects.number}</span>
+            <span className="section-title">{sections.projects.title}</span>
             <div className="section-line"></div>
           </div>
         </FadeIn>
 
         <div className="proj__grid">
-          {projectsData.map((project, index) => (
+          {projects.items.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}

@@ -1,0 +1,68 @@
+.pdf-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(26, 26, 26, 0.36);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.pdf-modal__surface {
+  position: relative;
+  width: min(92vw, calc(88vh * 8.5 / 11), 760px);
+  aspect-ratio: 8.5 / 11;
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(var(--color-accent-secondary-rgb), 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 42px rgba(var(--color-accent-secondary-rgb), 0.12);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.pdf-modal__close {
+  position: absolute;
+  top: calc(var(--space-3) + 2px);
+  right: calc(var(--space-3) + 2px);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.36rem 0.62rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(var(--color-accent-secondary-rgb), 0.26);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-secondary);
+  font-size: 0.68rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.pdf-modal__close:hover {
+  border-color: var(--color-accent-secondary);
+  color: var(--color-accent-secondary);
+}
+
+.pdf-modal__doc {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+  pointer-events: none;
+  border-radius: calc(var(--radius-lg) - 8px);
+}
+
+@media (max-width: 768px) {
+  .pdf-modal__overlay {
+    padding: var(--space-3);
+  }
+
+  .pdf-modal__surface {
+    width: min(92vw, calc(74vh * 8.5 / 11), 520px);
+  }
+}
