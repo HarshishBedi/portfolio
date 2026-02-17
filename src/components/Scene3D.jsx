@@ -5,24 +5,23 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value))
 }
 
-function WirePlanet({ scrollProgressRef, scrollSpeedRef }) {
+function WirePlanet({ scrollProgressRef, scrollSpeedRef, isInViewRef }) {
   const meshRef = useRef()
-  const [pointer, setPointer] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
+  
+  // Visual constants
+  const baseScale = 1.0
 
-  const opacity = isHovered ? 0.42 : 0.32
-  const scale = isHovered ? 1.0 : 0.96
+  useFrame((state, delta) => {
+    // SAFE OPTIMIZATION: Skip updates if not visible or mesh not ready
+    if (!isInViewRef.current || !meshRef.current) return
 
-  useFrame(() => {
-    if (!meshRef.current) return
     const scrollProgress = scrollProgressRef.current
     const scrollSpeed = scrollSpeedRef.current
     
-    // Calculate rotation based on refs (no re-renders)
-    const rotX = pointer.y * 0.24
-    const rotY = scrollProgress * 0.88 + scrollSpeed * 0.72 + pointer.x * 0.22
+    // Rotation based only on scroll
+    const rotY = scrollProgress * 0.88 + scrollSpeed * 0.72
     
-    meshRef.current.rotation.x = rotX
+    meshRef.current.rotation.x = 0 // Keep it level
     meshRef.current.rotation.y = rotY
   })
 
@@ -30,131 +29,136 @@ function WirePlanet({ scrollProgressRef, scrollSpeedRef }) {
     <mesh
       ref={meshRef}
       position={[0, 0.05, -1.5]}
-      scale={scale}
-      onPointerOver={() => setIsHovered(true)}
-      onPointerOut={() => setIsHovered(false)}
-      onPointerMove={(event) => {
-        setPointer({
-          x: clamp(event.pointer.x, -1, 1),
-          y: clamp(event.pointer.y, -1, 1),
-        })
-      }}
+      scale={baseScale}
     >
-      <sphereGeometry args={[0.88, 18, 18]} />
+      <sphereGeometry args={[0.88, 64, 64]} />
       <meshBasicMaterial
         color="#6F7D4B"
         wireframe
         transparent
-        opacity={opacity}
+        opacity={0.32}
       />
     </mesh>
   )
 }
 
 export function HeroScene() {
-  // Use refs for values that change constantly during scroll
+  const containerRef = useRef(null)
+  
+  // Refs for performance (Mutable state)
   const scrollProgress = useRef(0)
   const scrollSpeed = useRef(0)
+  const isInView = useRef(true) // Track visibility in Ref for useFrame access
+
+  const lastY = useRef(0)
+  const lastT = useRef(0)
+  const targetSpeed = useRef(0)
   
-  const lastYRef = useRef(0)
-  const lastTRef = useRef(0)
-  const hasScrolledRef = useRef(false)
-  const targetSpeedRef = useRef(0)
-  const speedFrameRef = useRef(null)
-  const stopTimerRef = useRef(null)
+  // Clean up animation frame / timeout
+  const rafId = useRef(null)
+  const timeoutId = useRef(null)
 
   useEffect(() => {
-    let frameRequested = false
-    
-    // Animation loop for speed interpolation
-    const startSpeedAnimation = () => {
-      if (speedFrameRef.current) return
+    // --- 1. Visibility Observer ---
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInView.current = entry.isIntersecting
+      },
+      { threshold: 0 } // Trigger as soon as 1 pixel enters/leaves
+    )
 
-      const tick = () => {
-        const current = scrollSpeed.current
-        const next = current + (targetSpeedRef.current - current) * 0.2
-        const settled =
-          Math.abs(next - targetSpeedRef.current) < 0.003 &&
-          Math.abs(targetSpeedRef.current) < 0.003
-
-        if (settled) {
-          scrollSpeed.current = targetSpeedRef.current // Snap to target
-          speedFrameRef.current = null
-          return
-        }
-
-        scrollSpeed.current = next
-        speedFrameRef.current = window.requestAnimationFrame(tick)
-      }
-
-      speedFrameRef.current = window.requestAnimationFrame(tick)
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
     }
 
+    // --- 2. Scroll Handler ---
     const onScroll = () => {
-      if (frameRequested) return
-      frameRequested = true
+      // Optimization: simple throttle via rAF is often enough
+      if (rafId.current) return
 
-      window.requestAnimationFrame(() => {
+      rafId.current = requestAnimationFrame(() => {
         const now = performance.now()
         const y = window.scrollY
-        const dy = y - lastYRef.current
-        const dt = Math.max(1, now - lastTRef.current)
+        
+        // Calculate physics
+        const dy = y - lastY.current
+        const dt = Math.max(1, now - lastT.current)
         const pxPerMs = dy / dt
+        
+        // Update Scroll Progress
+        const maxScroll = document.body.scrollHeight - window.innerHeight
+        scrollProgress.current = maxScroll > 0 ? y / maxScroll : 0
+
+        // Update Speed (Target)
+        // Clamp speed to avoid spinning too fast on huge scrolls
         const rawSpeed = clamp(pxPerMs / 3.2, -0.85, 0.85)
-        const speed = hasScrolledRef.current ? rawSpeed : 0
+        targetSpeed.current = rawSpeed
 
-        const denominator = window.document.body.scrollHeight - window.innerHeight
-        const progress = denominator > 0 ? y / denominator : 0
-        
-        // Update refs directly - NO STATE UPDATE
-        scrollProgress.current = progress
-        targetSpeedRef.current = speed
-        
-        startSpeedAnimation()
-        
-        lastYRef.current = y
-        lastTRef.current = now
+        lastY.current = y
+        lastT.current = now
+        rafId.current = null
 
-        if (stopTimerRef.current) window.clearTimeout(stopTimerRef.current)
-        stopTimerRef.current = window.setTimeout(() => {
-          targetSpeedRef.current = 0
-          startSpeedAnimation()
-        }, 120)
-        
-        hasScrolledRef.current = true
-        frameRequested = false
+        // Decay speed when scroll stops
+        if (timeoutId.current) clearTimeout(timeoutId.current)
+        timeoutId.current = setTimeout(() => {
+          targetSpeed.current = 0
+        }, 100)
       })
     }
+    
+    // --- 3. Animation Loop (Speed Interpolation) ---
+    // Instead of a separate loop, we can just let useFrame handle the interpolation?
+    // Actually, running a small logic loop for speed interpolation outside of React is efficient.
+    let animId
+    const loop = () => {
+      // Only interpolate if visible to save CPU
+      if (isInView.current) {
+        // Linear interpolation (Lerp) for smooth speed decay
+        scrollSpeed.current += (targetSpeed.current - scrollSpeed.current) * 0.1
+      } else {
+        // If not visible, just snap speeds to 0 or pause updates
+        // Snapping creates a "jump" when reappearing, so maybe just pause.
+        // Let's assume we pause.
+      }
+      animId = requestAnimationFrame(loop)
+    }
+    loop()
 
-    // Initial setup
-    const initialY = window.scrollY
-    const denominator = window.document.body.scrollHeight - window.innerHeight
-    scrollProgress.current = denominator > 0 ? initialY / denominator : 0
-    scrollSpeed.current = 0
-    
-    lastYRef.current = initialY
-    lastTRef.current = performance.now()
-    
+    // Setup
     window.addEventListener('scroll', onScroll, { passive: true })
+    lastY.current = window.scrollY
+    lastT.current = performance.now()
+    
+    // Cleanup
     return () => {
       window.removeEventListener('scroll', onScroll)
-      if (stopTimerRef.current) window.clearTimeout(stopTimerRef.current)
-      if (speedFrameRef.current) window.cancelAnimationFrame(speedFrameRef.current)
+      observer.disconnect()
+      cancelAnimationFrame(animId)
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+      if (timeoutId.current) clearTimeout(timeoutId.current)
     }
   }, [])
 
   return (
-    <div className="hero-scene-container">
+    <div className="hero-scene-container" ref={containerRef}>
       <Canvas
         camera={{ position: [0, 0, 4.6], fov: 40 }}
-        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        gl={{ 
+          antialias: false, 
+          alpha: true, 
+          powerPreference: 'high-performance',
+          failIfMajorPerformanceCaveat: true 
+        }}
         dpr={[0.7, 1]}
-        frameloop="always" 
+        frameloop="always" // Keep context alive!
         style={{ background: 'transparent' }}
       >
-        <WirePlanet scrollProgressRef={scrollProgress} scrollSpeedRef={scrollSpeed} />
+        <WirePlanet 
+          scrollProgressRef={scrollProgress} 
+          scrollSpeedRef={scrollSpeed}
+          isInViewRef={isInView} 
+        />
       </Canvas>
     </div>
   )
 }
-

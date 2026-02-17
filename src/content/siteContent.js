@@ -113,7 +113,7 @@ export const siteContent = {
         detail: 'Under Review at Transportation Research Part D',
       },
       {
-        goal: 'Chasing Leetcode Guardian',
+        goal: 'Leetcode Guardian',
         detail: 'Currently a Knight with 500+ problems solved',
       },
     ],
@@ -195,7 +195,7 @@ export const siteContent = {
   heading: {
   line1: "Good teams",
   line2: "need builders.",
-  accent: "I build",
+  accent: "I build.",
 },
     blurb:
       'I work on systems, models, and infrastructure that solve real problems. If you need someone who ships and thinks deeply, reach out.',
