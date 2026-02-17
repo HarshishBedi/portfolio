@@ -121,6 +121,7 @@ export function Contact() {
                     className="contact__input"
                     placeholder={contact.form.namePlaceholder}
                     required
+                    autoComplete="name"
                   />
                 </div>
                 <div className="contact__field">
@@ -132,6 +133,7 @@ export function Contact() {
                     className="contact__input"
                     placeholder={contact.form.emailPlaceholder}
                     required
+                    autoComplete="email"
                   />
                 </div>
                 <div className="contact__field">
@@ -143,6 +145,7 @@ export function Contact() {
                     placeholder={contact.form.messagePlaceholder}
                     rows="5"
                     required
+                    autoComplete="off"
                   ></textarea>
                 </div>
 

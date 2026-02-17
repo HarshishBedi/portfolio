@@ -96,6 +96,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow);
@@ -358,7 +359,7 @@
 /* Responsive — stack on mobile */
 @media (max-width: 768px) {
   .experience__ornament {
-    opacity: 0.14;
+    display: none;
   }
 
   .exp__timeline-line {

@@ -25,6 +25,7 @@ export function PdfModal({
   }, [pdfDocument, onClose])
 
   if (!pdfDocument) return null
+  const iframeSrc = `${pdfDocument.url}#page=1&view=Fit&zoom=page-fit&toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0`
 
   const modalNode = (
     <div
@@ -35,20 +36,43 @@ export function PdfModal({
       onClick={onClose}
     >
       <div className="pdf-modal__surface" onClick={(event) => event.stopPropagation()}>
-        <button
-          type="button"
-          className="pdf-modal__close"
-          onClick={onClose}
-          aria-label={closeAriaLabel}
-        >
-          {closeText}
-        </button>
+        <header className="pdf-modal__header">
+          <h3 className="pdf-modal__title">{pdfDocument.title}</h3>
 
-        <iframe
-          className="pdf-modal__doc"
-          src={`${pdfDocument.url}#page=1&view=Fit&zoom=page-fit&toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0`}
-          title={pdfDocument.title}
-        />
+          <div className="pdf-modal__header-actions">
+            <a
+              className="pdf-modal__action"
+              href={pdfDocument.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open
+            </a>
+            <a
+              className="pdf-modal__action"
+              href={pdfDocument.url}
+              download
+            >
+              Download
+            </a>
+            <button
+              type="button"
+              className="pdf-modal__close"
+              onClick={onClose}
+              aria-label={closeAriaLabel}
+            >
+              {closeText}
+            </button>
+          </div>
+        </header>
+
+        <div className="pdf-modal__frame">
+          <iframe
+            className="pdf-modal__doc"
+            src={iframeSrc}
+            title={pdfDocument.title}
+          />
+        </div>
       </div>
     </div>
   )

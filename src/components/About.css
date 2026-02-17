@@ -83,6 +83,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
@@ -116,6 +117,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
@@ -169,28 +171,40 @@
 }
 
 .about__marquee {
+  position: relative;
   overflow: hidden;
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
+  contain: layout paint;
+}
+
+.about__marquee::before,
+.about__marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about__marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--color-bg), rgba(244, 241, 234, 0));
+}
+
+.about__marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--color-bg), rgba(244, 241, 234, 0));
 }
 
 .about__marquee-track {
   display: flex;
   gap: var(--space-4);
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .about__skill-tag {
@@ -202,9 +216,7 @@
   border: 1px solid rgba(var(--color-accent-secondary-rgb), 0.24);
   border-radius: var(--radius-full);
   background: rgba(var(--color-accent-secondary-rgb), 0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
 }
 
 .about__skill-tag:hover {
@@ -221,7 +233,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .about__ornament {
-    opacity: 0.15;
+    display: none;
   }
 
   .about__grid {
@@ -264,7 +276,29 @@
     padding: var(--space-1) var(--space-3);
   }
 
+  .about__marquee::before,
+  .about__marquee::after {
+    width: 36px;
+  }
+
+  .about__marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    transform: none;
+    will-change: auto;
+  }
+
   .about__skills {
     padding: var(--space-4) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__marquee-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
   }
 }

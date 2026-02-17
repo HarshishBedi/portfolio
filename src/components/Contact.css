@@ -32,20 +32,24 @@
 /* Layout */
 .contact__layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: var(--space-12);
   align-items: start;
+}
+
+.contact__layout > * {
+  min-width: 0;
 }
 
 /* CTA Side */
 .contact__heading {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 5.2vw, 3.35rem);
   font-weight: 740;
-  line-height: 1.08;
+  line-height: 1.05;
   color: var(--color-text);
   margin-bottom: var(--space-6);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.016em;
 }
 
 .contact__heading span {
@@ -70,6 +74,34 @@
   max-width: 460px;
 }
 
+@media (max-width: 1100px) and (min-width: 769px) {
+  .contact__layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: var(--space-8);
+  }
+
+  .contact__heading {
+    font-size: clamp(1.95rem, 4.35vw, 3rem);
+    line-height: 1.04;
+    font-weight: 730;
+    letter-spacing: -0.016em;
+  }
+
+  .contact__heading span + span {
+    margin-top: 0.02em;
+  }
+
+  .contact__text {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-8);
+    max-width: 38ch;
+  }
+
+  .contact__form-wrap {
+    padding: var(--space-6);
+  }
+}
+
 /* Social Icons — glass circles */
 .contact__icons {
   display: flex;
@@ -86,6 +118,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: 50%;
   box-shadow: var(--glass-shadow);
@@ -125,12 +158,15 @@
 /* Form — glass card */
 .contact__form-wrap {
   background: var(--glass-bg-strong);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   box-shadow: var(--glass-shadow);
+  justify-self: end;
+  width: min(100%, 640px);
 }
 
 .contact__form {
@@ -240,7 +276,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .contact__ornament {
-    opacity: 0.14;
+    display: none;
   }
 
   .contact__layout {
