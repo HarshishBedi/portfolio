@@ -278,16 +278,15 @@
 
   .about__marquee::before,
   .about__marquee::after {
-    width: 36px;
+    display: none;
   }
 
   .about__marquee-track {
-    animation: none;
-    width: auto;
-    flex-wrap: wrap;
     gap: var(--space-2);
-    transform: none;
-    will-change: auto;
+    animation: marquee 46s linear infinite;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .about__skills {
