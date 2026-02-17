@@ -145,6 +145,14 @@ export const siteContent = {
           'Built real-time transit prediction systems by optimizing inference pipelines, improving location reliability, and streamlining cloud deployments for smoother releases.'
         ],
       },
+      {
+        role: 'Software Engineer',
+        company: 'SolBocks',
+        period: '2020 — 2022',
+        highlights: [
+        'Full-stack engineer on Search, building large-scale retrieval systems, improving latency, engagement, and reliability across millions of queries.'
+        ],
+      },
     ],
     pdfCloseText: 'Close',
     pdfCloseAriaLabel: 'Close recommendation letter viewer',
@@ -156,7 +164,7 @@ export const siteContent = {
         id: '01',
         title: 'Utilbelt.io',
         desc: 'Privacy-first developer toolkit with 100% client-side logic via WebAssembly and JS. Zero data leaves the browser.',
-        stack: ['React', 'Vite', 'PWA', 'WebAssembly'],
+        stack: ['React', 'Vite', 'Netlify-Neon'],
         link: 'https://utilbelt.io',
       },
       {

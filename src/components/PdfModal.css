@@ -5,6 +5,7 @@
   background: rgba(26, 26, 26, 0.36);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+
   display: flex;
   align-items: center;
   justify-content: center;

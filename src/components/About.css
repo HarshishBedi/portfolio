@@ -83,6 +83,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
@@ -116,6 +117,7 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
@@ -204,6 +206,7 @@
   background: rgba(var(--color-accent-secondary-rgb), 0.06);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+
   transition: all var(--transition-fast);
 }
 
@@ -221,7 +224,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .about__ornament {
-    opacity: 0.15;
+    display: none;
   }
 
   .about__grid {

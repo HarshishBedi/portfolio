@@ -76,9 +76,10 @@
   --shadow-glow-secondary: 0 8px 24px rgba(var(--color-accent-secondary-rgb), 0.22);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.46);
-  --glass-bg-strong: rgba(255, 255, 255, 0.62);
-  --glass-border: rgba(255, 255, 255, 0.42);
-  --glass-blur: 16px;
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.34);
+  --glass-bg-strong: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.32);
+  --glass-blur: 8px;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
