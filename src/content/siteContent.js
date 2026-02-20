@@ -54,33 +54,28 @@ export const siteContent = {
   about: {
     imageAlt: 'Harshish Bedi',
     bioParagraphs: [
-      [
-        { text: 'Machine Learning Engineer with a sharp focus on ' },
-        { text: 'performance-critical systems', style: 'strong' },
-        {
-          text: '. I architect solutions that bridge the gap between research and production — from CUDA-accelerated parsers to real-time inference pipelines.',
-        },
-      ],
-      [
-        { text: 'Graduated with my MS in Computer Science at ' },
-        { text: 'Rutgers University', style: 'strong' },
-        {
-          text: ', where I researched transit resilience using graph neural networks and built computer vision pipelines for aerial infrastructure detection.',
-        },
-      ],
-    ],
+  [
+    { text: 'Machine Learning Engineer building ' },
+    { text: 'performance-driven AI systems', style: 'strong' },
+    {
+      text: '. I turn research ideas into production software, from GPU-accelerated data engines to real-time inference services that actually ship and scale.',
+    },
+  ],
+  [
+    { text: 'MS in Computer Science from ' },
+    { text: 'Rutgers University', style: 'strong' },
+    {
+      text: ', where I worked on graph-based risk modeling and computer vision systems for large-scale infrastructure analysis. I care about speed, correctness, and measurable impact. Models are interesting. Systems that perform are better.',
+    },
+  ],
+],
     educationTitle: 'Education',
     education: [
       {
         degree: 'MS Computer Science',
         school: 'Rutgers University, NJ',
         year: '2024 — 2026',
-      },
-      {
-        degree: 'BE Computer Science',
-        school: 'University of Mumbai, IN',
-        year: '2019 — 2023',
-      },
+      }
     ],
     skills: [
       'Python',

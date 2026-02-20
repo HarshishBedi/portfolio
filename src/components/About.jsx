@@ -1,7 +1,7 @@
 import React from 'react'
 import { FadeIn } from './FadeIn'
 import './About.css'
-import headshot from '../assets/headshot.jpg'
+import headshot from '../assets/headshot.png'
 import { siteContent } from '../content/siteContent'
 import { SectionAccent3D } from './SectionAccent3D'
 
