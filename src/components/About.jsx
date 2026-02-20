@@ -4,6 +4,8 @@ import './About.css'
 import headshot from '../assets/headshot.png'
 import { siteContent } from '../content/siteContent'
 import { SectionAccent3D } from './SectionAccent3D'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 function renderBioPart(part, index) {
   if (part.style === 'em') return <em key={index}>{part.text}</em>
@@ -33,7 +35,13 @@ export function About() {
           {/* Left: Image */}
           <FadeIn direction="left" delay={0.1} className="about__image-col">
             <div className="about__image-wrap">
-              <img src={headshot} alt={about.imageAlt} className="about__image" />
+              <LazyLoadImage
+                src={headshot}
+                alt={about.imageAlt}
+                className="about__image"
+                effect="blur"
+                wrapperProps={{ style: { display: "block", width: "100%", height: "100%" } }}
+              />
             </div>
           </FadeIn>
 
