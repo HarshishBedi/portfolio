@@ -157,7 +157,7 @@ export const siteContent = {
     items: [
       {
         id: '01',
-        title: 'Utilbelt.io',
+        title: 'Utilbelt',
         desc: 'Privacy-first developer toolkit with 100% client-side logic via WebAssembly and JS. Zero data leaves the browser.',
         stack: ['React', 'Vite', 'Netlify-Neon'],
         link: 'https://utilbelt.io',
@@ -171,17 +171,17 @@ export const siteContent = {
       },
       {
         id: '03',
+        title: 'StructViewer',
+        desc: 'Interactive data-structure visualizer for data structures with step-by-step timeline playback and operation logs.',
+        stack: ['React', 'TypeScript', 'Zustand', 'Framer Motion', 'Vite'],
+        link: 'https://structviewer.online/',
+      },
+      {
+        id: '04',
         title: 'SigFlow',
         desc: 'NASDAQ ITCH v5 protocol parser. Nanosecond-level order book reconstruction using CUDA-accelerated processing.',
         stack: ['CUDA', 'C++', 'Python', 'NumPy'],
         link: 'https://github.com/HarshishBedi/SigFlow-py',
-      },
-      {
-        id: '04',
-        title: 'R-Nav',
-        desc: 'Autonomous navigation CNN achieving 95.7% accuracy. GPU-optimized training pipeline with real-time ROS integration.',
-        stack: ['PyTorch', 'CNN', 'ROS', 'Python'],
-        link: 'https://github.com/kunaldudhavat/Space-Rescue-Mission',
       },
     ],
   },
