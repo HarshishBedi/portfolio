@@ -73,7 +73,7 @@ export const siteContent = {
     education: [
       {
         degree: 'MS Computer Science',
-        school: 'Rutgers University, NJ',
+        school: 'Rutgers University',
         year: '2024 — 2026',
       }
     ],
