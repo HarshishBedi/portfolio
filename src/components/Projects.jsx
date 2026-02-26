@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { FadeIn } from './FadeIn'
 import './Projects.css'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 import { SectionAccent3D } from './SectionAccent3D'
 
 function ProjectCard({ project, index }) {
@@ -60,7 +60,7 @@ function ProjectCard({ project, index }) {
 }
 
 export function Projects() {
-  const { sections, projects } = siteContent
+  const { sections, projects } = useSiteContent()
 
   return (
     <section id="projects" className="projects section">

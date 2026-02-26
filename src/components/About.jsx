@@ -2,7 +2,7 @@ import React from 'react'
 import { FadeIn } from './FadeIn'
 import './About.css'
 import headshot from '../assets/headshot.webp'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 import { SectionAccent3D } from './SectionAccent3D'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
@@ -14,7 +14,7 @@ function renderBioPart(part, index) {
 }
 
 export function About() {
-  const { sections, about } = siteContent
+  const { sections, about } = useSiteContent()
 
   return (
     <section id="about" className="about section">

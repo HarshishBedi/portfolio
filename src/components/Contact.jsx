@@ -3,12 +3,12 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { FiMail, FiPhone } from 'react-icons/fi'
 import { FadeIn } from './FadeIn'
 import './Contact.css'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 import { SectionAccent3D } from './SectionAccent3D'
 
 export function Contact() {
   const [status, setStatus] = useState('idle') // idle | sending | success | error
-  const { profile, sections, contact } = siteContent
+  const { profile, sections, contact } = useSiteContent()
   const channelIconMap = {
     email: FiMail,
     phone: FiPhone,

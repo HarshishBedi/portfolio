@@ -1,5 +1,3 @@
-import resumePdf from '../assets/Harshish Resume.pdf'
-
 export const siteContent = {
   profile: {
     firstName: 'Harshish',
@@ -12,7 +10,7 @@ export const siteContent = {
       github: 'https://github.com/harshishbedi',
       linkedin: 'https://linkedin.com/in/harshishbedi',
       leetcode: 'https://leetcode.com/u/harshish10/',
-      resume: resumePdf,
+      resume: '/Harshish Resume.pdf',
     },
   },
 
@@ -41,7 +39,7 @@ export const siteContent = {
 
   hero: {
     roleTags: ['Machine Learning Engineer', 'Software Developer'],
-    description:"Building usable tools and end to end ML pipelines, that you will actually want to use twice.",
+    description: "Building usable tools and end to end ML pipelines, that you will actually want to use twice.",
     ctaText: 'Get in Touch',
     scrollLabel: 'Scroll',
     socialButtons: [
@@ -54,21 +52,21 @@ export const siteContent = {
   about: {
     imageAlt: 'Harshish Bedi',
     bioParagraphs: [
-  [
-    { text: 'Machine Learning Engineer building ' },
-    { text: 'performance-driven AI systems', style: 'strong' },
-    {
-      text: '. I turn research ideas into production software, from GPU-accelerated data engines to real-time inference services that actually ship and scale.',
-    },
-  ],
-  [
-    { text: 'MS in Computer Science from ' },
-    { text: 'Rutgers University', style: 'strong' },
-    {
-      text: ', where I worked on graph-based risk modeling and computer vision systems for large-scale infrastructure analysis. I care about speed, correctness, and measurable impact. Models are interesting. Systems that perform are better.',
-    },
-  ],
-],
+      [
+        { text: 'Machine Learning Engineer building ' },
+        { text: 'performance-driven AI systems', style: 'strong' },
+        {
+          text: '. I turn research ideas into production software, from GPU-accelerated data engines to real-time inference services that actually ship and scale.',
+        },
+      ],
+      [
+        { text: 'MS in Computer Science from ' },
+        { text: 'Rutgers University', style: 'strong' },
+        {
+          text: ', where I worked on graph-based risk modeling and computer vision systems for large-scale infrastructure analysis. I care about speed, correctness, and measurable impact. Models are interesting. Systems that perform are better.',
+        },
+      ],
+    ],
     educationTitle: 'Education',
     education: [
       {
@@ -126,7 +124,7 @@ export const siteContent = {
         company: 'Rutgers CAIT',
         period: '2024 — 2025',
         highlights: [
-        'Developed computer-vision pipelines for construction safety, improving pose tracking and detection accuracy while automating data labeling to drastically speed up analysis workflows.'
+          'Developed computer-vision pipelines for construction safety, improving pose tracking and detection accuracy while automating data labeling to drastically speed up analysis workflows.'
         ],
       },
       {
@@ -143,9 +141,9 @@ export const siteContent = {
       {
         role: 'Software Engineer',
         company: 'SolBocks',
-        period: '2020 — 2022',
+        period: '2021 — 2023',
         highlights: [
-        'Full-stack engineer on Search, building large-scale retrieval systems, improving latency, engagement, and reliability across millions of queries.'
+          'Full-stack engineer on Search, building large-scale retrieval systems, improving latency, engagement, and reliability across millions of queries.'
         ],
       },
     ],
@@ -187,11 +185,11 @@ export const siteContent = {
   },
 
   contact: {
-  heading: {
-  line1: "Good teams",
-  line2: "need builders.",
-  accent: "I build.",
-},
+    heading: {
+      line1: "Good teams",
+      line2: "need builders.",
+      accent: "I build.",
+    },
     blurb:
       'I work on systems, models, and infrastructure that solve real problems. If you need someone who ships and thinks deeply, reach out.',
     channels: [
