@@ -13,7 +13,7 @@ Personal portfolio site built for fast iteration, smooth motion, and custom 3D v
 ## Highlights
 
 - Custom React + Three.js portfolio with section-level motion and interactive hero scene.
-- Centralized editable content in `/src/content/siteContent.js`.
+- Live-editable content via external JSON Gist — update text without redeploying.
 - Responsive layout tuned for desktop, tablet, and mobile.
 - Single-page PDF card modal for resume and recommendation letter.
 - Deployed on Netlify with production-ready Vite builds.
@@ -25,21 +25,6 @@ Personal portfolio site built for fast iteration, smooth motion, and custom 3D v
 - Framer Motion
 - Vite 7
 - Vanilla CSS
-
-## Quick Start
-
-```bash
-npm install
-npm run dev
-```
-
-## Scripts
-
-```bash
-npm run dev      # Local development
-npm run build    # Production build
-npm run preview  # Preview built output
-```
 
 ## Project Structure
 
@@ -53,9 +38,9 @@ src/
 
 ## Content Updates
 
-For quick content edits (name, section text, links, projects, experience, contact copy), update:
+Site content (name, roles, bio, projects, experience, contact copy) is served from a GitHub Gist at runtime. To update, edit the Gist below — no rebuild or redeploy needed.
 
-- `/src/content/siteContent.js`
+[Content Gist](https://gist.github.com/HarshishBedi/08b0db7df1d30a7072da83c6d45342f2)
 
 ## Deployment
 
