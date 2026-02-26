@@ -3,7 +3,7 @@ import { FadeIn } from './FadeIn'
 import { PdfModal } from './PdfModal'
 import { SectionAccent3D } from './SectionAccent3D'
 import './Experience.css'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 
 function getPursuingTilt(seed, index) {
   const input = `${seed}-${index}`
@@ -22,7 +22,7 @@ function getPursuingTilt(seed, index) {
 
 export function Experience() {
   const [activeLetter, setActiveLetter] = useState(null)
-  const { sections, experience } = siteContent
+  const { sections, experience } = useSiteContent()
 
   return (
     <section id="experience" className="experience section">

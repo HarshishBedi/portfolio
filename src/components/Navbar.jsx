@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Navbar.css'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 import { PdfModal } from './PdfModal'
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [activeResume, setActiveResume] = useState(null)
-  const { profile, navbar } = siteContent
+  const { profile, navbar } = useSiteContent()
 
   useEffect(() => {
     const handleScroll = () => {

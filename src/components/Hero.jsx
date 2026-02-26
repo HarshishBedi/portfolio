@@ -4,12 +4,12 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { FiArrowUpRight } from 'react-icons/fi'
 import './Hero.css'
-import { siteContent } from '../content/siteContent'
+import { useSiteContent } from '../content/SiteContext'
 
 import { HeroScene } from './Scene3D'
 
 export function Hero() {
-  const { profile, hero } = siteContent
+  const { profile, hero } = useSiteContent()
   const socialIconMap = {
     github: FaGithub,
     linkedin: FaLinkedinIn,
