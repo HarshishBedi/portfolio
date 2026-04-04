@@ -9,7 +9,7 @@ export const siteContent = {
       phone: 'tel:+17323222705',
       github: 'https://github.com/harshishbedi',
       linkedin: 'https://linkedin.com/in/harshishbedi',
-      leetcode: 'https://leetcode.com/u/harshish10/',
+      leetcode: 'https://leetcode.com/u/harshishbedi/',
       resume: '/Harshish Resume.pdf',
     },
   },
