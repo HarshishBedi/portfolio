@@ -59,19 +59,28 @@ function Confetti() {
   )
 }
 
-export function Notification() {
+export function Notification({ onResolved }) {
   const { notification } = useSiteContent()
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    if (!notification) return undefined
+    // Signal "resolved" right away if there's nothing to show or it was already
+    // dismissed this session — so anything waiting on it (the hero hat) proceeds.
+    if (!notification) {
+      onResolved?.()
+      return undefined
+    }
     try {
-      if (window.sessionStorage.getItem(STORAGE_KEY)) return undefined
+      if (window.sessionStorage.getItem(STORAGE_KEY)) {
+        onResolved?.()
+        return undefined
+      }
     } catch {
       /* storage unavailable — show anyway */
     }
     const timer = window.setTimeout(() => setIsVisible(true), 900)
     return () => window.clearTimeout(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notification])
 
   const close = () => {
@@ -81,6 +90,7 @@ export function Notification() {
     } catch {
       /* ignore */
     }
+    onResolved?.()
   }
 
   useEffect(() => {
@@ -206,9 +216,6 @@ export function Notification() {
                   <FiArrowUpRight size={16} />
                 </a>
               )}
-              <button type="button" className="announce__btn announce__btn--ghost" onClick={close}>
-                Dismiss
-              </button>
             </motion.div>
             </div>
           </motion.div>

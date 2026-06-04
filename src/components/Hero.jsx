@@ -6,7 +6,7 @@ import { FiArrowUpRight } from 'react-icons/fi'
 import './Hero.css'
 import { useSiteContent } from '../content/SiteContext'
 
-export function Hero() {
+export function Hero({ revealSticker = false }) {
   const { profile, hero } = useSiteContent()
   const socialIconMap = {
     github: FaGithub,
@@ -88,8 +88,12 @@ export function Hero() {
       <motion.div
         className="hero__sticker"
         initial={{ opacity: 0, y: -140, scale: 0.5, rotate: -28 }}
-        animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-        transition={{ type: 'spring', stiffness: 170, damping: 11, delay: 1.3 }}
+        animate={
+          revealSticker
+            ? { opacity: 1, y: 0, scale: 1, rotate: 0 }
+            : { opacity: 0, y: -140, scale: 0.5, rotate: -28 }
+        }
+        transition={{ type: 'spring', stiffness: 170, damping: 11, delay: 0.25 }}
         aria-hidden="true"
       >
         <img
