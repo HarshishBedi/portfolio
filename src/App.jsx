@@ -5,6 +5,7 @@ import { About } from './components/About'
 import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
+import { Notification } from './components/Notification'
 import { Preloader } from './components/Preloader'
 import { SiteProvider } from './content/SiteContext'
 
@@ -82,6 +83,7 @@ function AppShell() {
         <Projects />
         <Contact />
       </main>
+      {isReady && <Notification />}
     </>
   )
 }

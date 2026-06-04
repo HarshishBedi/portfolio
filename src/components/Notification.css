@@ -1,0 +1,344 @@
+/* ─── Flashy center-stage announcement ─── */
+.announce {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background: radial-gradient(
+    circle at 50% 42%,
+    rgba(46, 40, 31, 0.28),
+    rgba(46, 40, 31, 0.55)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@property --announce-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ─── Glowing animated Google border ─── */
+.announce__card {
+  position: relative;
+  z-index: 2;
+  width: min(440px, 100%);
+  padding: 2.5px; /* thickness of the glowing ring */
+  border-radius: 30px;
+  background: conic-gradient(
+    from var(--announce-angle),
+    #4285f4,
+    #ea4335,
+    #fbbc04,
+    #34a853,
+    #4285f4
+  );
+  box-shadow: 0 40px 90px rgba(46, 40, 31, 0.32);
+  animation: announceSpin 4s linear infinite;
+  font-family: var(--font-body);
+}
+
+/* blurred duplicate behind = the soft colored "lighting" glow */
+.announce__card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 32px;
+  background: conic-gradient(
+    from var(--announce-angle),
+    #4285f4,
+    #ea4335,
+    #fbbc04,
+    #34a853,
+    #4285f4
+  );
+  filter: blur(22px);
+  opacity: 0.85;
+  animation: announceSpin 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes announceSpin {
+  to { --announce-angle: 360deg; }
+}
+
+/* inner white surface that the content sits on */
+.announce__inner {
+  position: relative;
+  z-index: 1;
+  padding: 44px 36px 32px;
+  text-align: center;
+  border-radius: 27.5px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  overflow: hidden;
+}
+
+/* one-time light sweep across the card on entrance */
+.announce__shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  transform: skewX(-18deg);
+  animation: announceShine 1.4s ease 0.5s 1 both;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes announceShine {
+  0% { left: -60%; opacity: 0; }
+  35% { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* ─── Confetti — full-screen celebration rain ─── */
+.announce__confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.announce__confetti-piece {
+  position: absolute;
+  top: 0;
+  will-change: transform, opacity;
+}
+
+/* ─── Close ─── */
+.announce__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  background: transparent;
+  cursor: pointer;
+  z-index: 5;
+  transition: all var(--transition-fast);
+}
+
+.announce__close:hover {
+  background: rgba(46, 40, 31, 0.07);
+  color: var(--color-text);
+  transform: rotate(90deg);
+}
+
+/* ─── Icon ─── */
+.announce__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--space-6);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:
+    0 10px 28px rgba(46, 40, 31, 0.14),
+    inset 0 0 0 1px rgba(46, 40, 31, 0.05);
+  z-index: 3;
+}
+
+.announce__icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.announce__icon-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 26px;
+  border: 2px solid rgba(66, 133, 244, 0.4);
+  animation: announceRing 2.4s ease-out infinite;
+}
+
+@keyframes announceRing {
+  0% { transform: scale(1); opacity: 0.7; }
+  70%, 100% { transform: scale(1.18); opacity: 0; }
+}
+
+/* ─── Text ─── */
+.announce__eyebrow {
+  display: block;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.announce__title {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.announce__text {
+  position: relative;
+  z-index: 3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 34ch;
+  margin: 0 auto var(--space-6);
+}
+
+/* ─── Dots ─── */
+.announce__dots {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.announce__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: announceDot 2.2s ease-in-out infinite;
+}
+
+.announce__dot:nth-child(2) { animation-delay: 0.25s; }
+.announce__dot:nth-child(3) { animation-delay: 0.5s; }
+.announce__dot:nth-child(4) { animation-delay: 0.75s; }
+
+@keyframes announceDot {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.45); opacity: 1; }
+}
+
+/* ─── Actions ─── */
+.announce__actions {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.announce__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.announce__btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: var(--shadow-glow-accent);
+}
+
+.announce__btn--primary:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+.announce__btn--primary svg {
+  transition: transform var(--transition-fast);
+}
+
+.announce__btn--primary:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.announce__btn--ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.announce__btn--ghost:hover {
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .announce {
+    padding: var(--space-4);
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .announce__card {
+    margin: auto; /* center vertically when it fits, allow scroll when it doesn't */
+  }
+
+  .announce__inner {
+    padding: 36px 22px 26px;
+  }
+
+  .announce__card::before {
+    filter: blur(16px);
+    opacity: 0.7;
+  }
+
+  .announce__icon {
+    width: 68px;
+    height: 68px;
+    margin-bottom: var(--space-4);
+  }
+
+  .announce__title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+
+  .announce__text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announce__card,
+  .announce__card::before,
+  .announce__shine,
+  .announce__icon-ring,
+  .announce__dot,
+  .announce__confetti-piece {
+    animation: none;
+  }
+  .announce__confetti { display: none; }
+}

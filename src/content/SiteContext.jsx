@@ -22,7 +22,14 @@ export function SiteProvider({ fallback, children }) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    let cancelled = false
+    let cancelled = false;
+
+    if (import.meta.env.DEV) {
+      import('./siteContent.js').then((mod) => {
+        if (!cancelled) setContent(mod.siteContent);
+      });
+      return () => { cancelled = true; };
+    }
 
     fetch(CONTENT_URL, { cache: 'no-cache' })
       .then((res) => {

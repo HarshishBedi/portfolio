@@ -6,8 +6,6 @@ import { FiArrowUpRight } from 'react-icons/fi'
 import './Hero.css'
 import { useSiteContent } from '../content/SiteContext'
 
-import { HeroScene } from './Scene3D'
-
 export function Hero() {
   const { profile, hero } = useSiteContent()
   const socialIconMap = {
@@ -18,11 +16,6 @@ export function Hero() {
 
   return (
     <section id="hero" className="hero">
-      {/* Three.js Background */}
-      <div className="hero__canvas">
-        <HeroScene />
-      </div>
-
       <div className="container hero__content">
         <motion.div
           className="hero__meta"
@@ -90,6 +83,22 @@ export function Hero() {
           </a>
         </motion.div>
       </div>
+
+      {/* Noogler hat — slapped on like a sticker */}
+      <motion.div
+        className="hero__sticker"
+        initial={{ opacity: 0, y: -140, scale: 0.5, rotate: -28 }}
+        animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+        transition={{ type: 'spring', stiffness: 170, damping: 11, delay: 1.3 }}
+        aria-hidden="true"
+      >
+        <img
+          src="/assets/pinwheel-hat-filled-outline-icon-clipart-image-isolated-on-white-background-700-276169816-removebg-preview.png"
+          alt=""
+          className="hero__sticker-img"
+          draggable="false"
+        />
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div

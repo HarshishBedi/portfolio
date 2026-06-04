@@ -7,43 +7,7 @@
   background: var(--color-bg);
 }
 
-/* Three.js Canvas */
-.hero__canvas {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateX(10%);
-  z-index: 1;
-  cursor: grab;
-  opacity: 0.72;
-}
 
-.hero__canvas:active {
-  cursor: grabbing;
-}
-
-.hero__canvas::before {
-  content: '';
-  position: absolute;
-  inset: 14% 10% 16% 24%;
-  border-radius: 44% 56% 48% 52%;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(var(--color-accent-secondary-rgb), 0.12), transparent 62%),
-    radial-gradient(circle at 70% 62%, rgba(var(--color-accent-rgb), 0.12), transparent 65%);
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-.hero-scene-container {
-  width: 100%;
-  height: 100%;
-}
-
-.hero-scene-container canvas {
-  filter: drop-shadow(0 16px 30px rgba(var(--color-accent-rgb), 0.14));
-}
 
 .hero__content {
   position: relative;
@@ -87,6 +51,8 @@
 .hero__name-accent {
   color: var(--color-accent);
 }
+
+
 
 .hero__desc {
   font-family: var(--font-body);
@@ -239,6 +205,38 @@
   100% { top: 100%; }
 }
 
+/* ─── Noogler hat sticker ─── */
+.hero__sticker {
+  position: absolute;
+  top: clamp(96px, 17vh, 160px);
+  right: clamp(20px, 7vw, 96px);
+  z-index: 4;
+  width: clamp(124px, 15vw, 200px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero__sticker-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 52% 32%;
+  filter: drop-shadow(0 10px 16px rgba(46, 40, 31, 0.22));
+  animation: heroStickerSway 4.5s ease-in-out infinite;
+}
+
+@keyframes heroStickerSway {
+  0%, 100% { transform: rotate(6deg); }
+  50% { transform: rotate(11deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__sticker-img {
+    animation: none;
+    transform: rotate(8deg);
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
@@ -250,18 +248,6 @@
     padding-bottom: var(--space-8);
   }
 
-  .hero__canvas {
-    width: 100%;
-    opacity: 0.45;
-    left: 0;
-    right: 0;
-    transform: none;
-  }
-
-  .hero__canvas::before {
-    inset: 18% 12% 16% 12%;
-    filter: blur(10px);
-  }
 
   .hero__content {
     padding-top: var(--space-6);
@@ -326,5 +312,11 @@
 
   .hero__scroll {
     display: none;
+  }
+
+  .hero__sticker {
+    width: 88px;
+    top: 64px;
+    right: 10px;
   }
 }
