@@ -83,46 +83,48 @@ export function Experience() {
             >
               <div className={`exp__item ${index % 2 === 0 ? 'exp__item--left' : 'exp__item--right'}`}>
                 <div className="exp__dot"></div>
-                <div className="exp__card">
-                  {exp.letterUrl && (
-                    <button
-                      type="button"
-                      className="exp__letter-sticker"
-                      aria-label={`Open recommendation letter for ${exp.company}`}
-                      onClick={() =>
-                        setActiveLetter({
-                          title: exp.letterTitle || exp.role,
-                          url: exp.letterUrl
-                        })
-                      }
-                    >
-                      <span>{exp.letterStickerText || 'LOR'}</span>
-                      <svg
-                        className="exp__letter-icon"
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        aria-hidden="true"
+                <div className={`exp__card${exp.company === 'Google' ? ' exp__card--google' : ''}`}>
+                  <div className="exp__card-inner">
+                    {exp.letterUrl && (
+                      <button
+                        type="button"
+                        className="exp__letter-sticker"
+                        aria-label={`Open recommendation letter for ${exp.company}`}
+                        onClick={() =>
+                          setActiveLetter({
+                            title: exp.letterTitle || exp.role,
+                            url: exp.letterUrl
+                          })
+                        }
                       >
-                        <path
-                          d="M3 9L9 3M9 3H4.5M9 3V7.5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  )}
-                  <div className="exp__period">{exp.period}</div>
-                  <h3 className="exp__role">{exp.role}</h3>
-                  <span className="exp__company">{exp.company}</span>
-                  <ul className="exp__highlights">
-                    {exp.highlights.map((h, i) => (
-                      <li key={i}>{h}</li>
-                    ))}
-                  </ul>
+                        <span>{exp.letterStickerText || 'LOR'}</span>
+                        <svg
+                          className="exp__letter-icon"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M3 9L9 3M9 3H4.5M9 3V7.5"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
+                    <div className="exp__period">{exp.period}</div>
+                    <h3 className="exp__role">{exp.role}</h3>
+                    <span className="exp__company">{exp.company}</span>
+                    <ul className="exp__highlights">
+                      {exp.highlights.map((h, i) => (
+                        <li key={i}>{h}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </FadeIn>

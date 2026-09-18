@@ -116,6 +116,87 @@
   box-shadow: var(--glass-shadow), 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
+/* ─── Google card — glowing animated Google border ─── */
+@property --exp-google-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Outer element becomes the rotating gradient ring (solid conic background —
+   no mask, so there is no wrap seam). The content sits on an opaque inner
+   surface, exactly like the announcement card. */
+.exp__card--google {
+  border: none;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--exp-google-angle),
+    #4285f4,
+    #ea4335,
+    #fbbc04,
+    #34a853,
+    #4285f4
+  );
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  animation: expGoogleSpin 4s linear infinite;
+}
+
+.exp__card--google .exp__card-inner {
+  height: 100%;
+  padding: var(--space-6) var(--space-8);
+  border-radius: calc(var(--radius-lg) - 1.5px);
+  background: rgba(244, 241, 234, 0.94);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* blurred edge-ring behind = the soft colored glow halo */
+.exp__card--google::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: var(--radius-lg);
+  padding: 7px;
+  background: conic-gradient(
+    from var(--exp-google-angle),
+    #4285f4,
+    #ea4335,
+    #fbbc04,
+    #34a853,
+    #4285f4
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  filter: blur(10px);
+  opacity: 0.85;
+  animation: expGoogleSpin 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes expGoogleSpin {
+  to { --exp-google-angle: 360deg; }
+}
+
+.exp__card--google:hover {
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.08);
+}
+
+.exp__card--google:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp__card--google,
+  .exp__card--google::before {
+    animation: none;
+  }
+}
+
 .exp__item--left:hover .exp__card {
   transform: translateX(-6px);
 }

@@ -38,7 +38,7 @@ export const siteContent = {
   },
 
   hero: {
-    roleTags: ['Machine Learning Engineer', 'Software Developer'],
+    roleTags: ['Software Engineer', 'Machine Learning Engineer'],
     description: "Building usable tools and end to end ML pipelines, that you will actually want to use twice.",
     ctaText: 'Get in Touch',
     scrollLabel: 'Scroll',
@@ -49,14 +49,24 @@ export const siteContent = {
     ],
   },
 
+  notification: {
+    app: 'Career',
+    time: 'now',
+    title: 'Google Hired Me!',
+    body: 'Starting as a Software Engineer in 2026.',
+    expandedBody:
+      'I’m thrilled to share that I’m joining Google as a Software Engineer in 2026. Grateful for everyone who was part of the journey.',
+    cta: { label: 'Read more', href: 'https://linkedin.com/in/harshishbedi' },
+  },
+
   about: {
     imageAlt: 'Harshish Bedi',
     bioParagraphs: [
       [
-        { text: 'Machine Learning Engineer building ' },
-        { text: 'performance-driven AI systems', style: 'strong' },
+        { text: 'Software Engineer at ' },
+        { text: 'Google', style: 'strong' },
         {
-          text: '. I turn research ideas into production software, from GPU-accelerated data engines to real-time inference services that actually ship and scale.',
+          text: ', building on a background in ML systems and production software. From GPU-accelerated data engines to real-time inference services — I ship things that scale.',
         },
       ],
       [
@@ -112,9 +122,17 @@ export const siteContent = {
     ],
     roles: [
       {
+        role: 'Software Engineer',
+        company: 'Google',
+        period: '2026 — Present',
+        highlights: [
+          "Just a Noogler for now :)"
+        ],
+      },
+      {
         role: 'Machine Learning Engineer',
         company: 'Rutgers RUCI',
-        period: '2024 — Present',
+        period: '2024 — 2026',
         highlights: [
           'Built a geospatial graph pipeline that analyzed transit vulnerability, modeled network risk, and streamlined training workflows to make resilience insights faster and easier to generate.'
         ],
@@ -186,12 +204,12 @@ export const siteContent = {
 
   contact: {
     heading: {
-      line1: "Good teams",
-      line2: "need builders.",
-      accent: "I build.",
+      line1: "Got the call.",
+      line2: "Still building.",
+      accent: "Let's connect.",
     },
     blurb:
-      'I work on systems, models, and infrastructure that solve real problems. If you need someone who ships and thinks deeply, reach out.',
+      'Joining Google as a Software Engineer. Always happy to connect — whether it\'s about systems, ML, or just building cool things. Reach out.',
     channels: [
       { key: 'email', label: 'Email' },
       { key: 'phone', label: 'Phone' },

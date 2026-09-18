@@ -5,12 +5,16 @@ import { About } from './components/About'
 import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
+import { Notification } from './components/Notification'
 import { Preloader } from './components/Preloader'
 import { SiteProvider } from './content/SiteContext'
 
 function AppShell() {
   const [isReady, setIsReady] = useState(false)
   const [showPostReveal, setShowPostReveal] = useState(false)
+  // The hero hat waits until the announcement is resolved (closed, or skipped
+  // because it was already seen) so it drops in right after the popup closes.
+  const [announcementResolved, setAnnouncementResolved] = useState(false)
 
   useEffect(() => {
     const startedAt = Date.now()
@@ -76,12 +80,13 @@ function AppShell() {
       {showPostReveal && <div className="app-reveal app-reveal--active" aria-hidden="true"></div>}
       <main id="app" className={`app-shell ${isReady ? 'app-shell--ready' : ''}`}>
         <Navbar />
-        <Hero />
+        <Hero revealSticker={announcementResolved} />
         <About />
         <Experience />
         <Projects />
         <Contact />
       </main>
+      {isReady && <Notification onResolved={() => setAnnouncementResolved(true)} />}
     </>
   )
 }
