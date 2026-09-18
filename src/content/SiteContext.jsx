@@ -5,7 +5,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
  * Update this to your own Gist raw URL after creating the Gist.
  */
 const CONTENT_URL =
-'https://gist.githubusercontent.com/HarshishBedi/08b0db7df1d30a7072da83c6d45342f2/raw/8d2f86579028c7e8d01051b996231cb5f47f7888/siteContent.json'
+'https://gist.githubusercontent.com/HarshishBedi/08b0db7df1d30a7072da83c6d45342f2/raw/081e1a8bbcea101ec37bdb2b85536518f9a3a49f/siteContent.json'
 
 const SiteContext = createContext(null)
 
