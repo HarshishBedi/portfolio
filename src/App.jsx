@@ -93,7 +93,7 @@ function AppShell() {
 
 function App() {
   return (
-    <SiteProvider fallback={<Preloader isVisible />}>
+    <SiteProvider>
       <AppShell />
     </SiteProvider>
   )
