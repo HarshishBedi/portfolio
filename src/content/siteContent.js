@@ -56,7 +56,10 @@ export const siteContent = {
     body: 'Starting as a Software Engineer in 2026.',
     expandedBody:
       'I’m thrilled to share that I’m joining Google as a Software Engineer in 2026. Grateful for everyone who was part of the journey.',
-    cta: { label: 'Read more', href: 'https://linkedin.com/in/harshishbedi' },
+    cta: {
+      label: 'Read more',
+      href: 'https://www.linkedin.com/feed/update/urn:li:activity:7505518876776947712/',
+    },
   },
 
   about: {
